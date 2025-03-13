@@ -55,11 +55,8 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                             </div>
+
                             
-                             <!-- Botón de Iniciar Sesión -->
-                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
-                            </div>
                         </form>
 
                         <!-- Mensaje de error -->
