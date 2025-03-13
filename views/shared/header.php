@@ -23,7 +23,7 @@
     <div class="container">
         <a class="navbar-brand" href="./">
             <img src="./assets/img/invoice.png" alt="logo">
-            <span class="span-logo">Factu</span>Soft
+            <span class="span-logo">D</span>2
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,29 +32,11 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Productos
+                        Usuarios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controlador=producto&accion=index">Listar</a></li>
-                        <li><a class="dropdown-item" href="index.php?controlador=producto&accion=insert">Crear nuevo</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Clientes
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controlador=cliente&accion=index">Listar</a></li>
-                        <li><a class="dropdown-item" href="index.php?controlador=cliente&accion=insert">Crear nuevo</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Facturas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controlador=venta&accion=index">Listar</a></li>
-                        <li><a class="dropdown-item" href="index.php?controlador=venta&accion=insert">Nueva Venta</a></li>
+                        <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=index">Listar</a></li>
+                        <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=insert">Crear nuevo</a></li>
                     </ul>
                 </li>
             </ul>

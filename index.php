@@ -2,7 +2,7 @@
 require_once "config/config.php";
 require_once "core/routes.php";
 require_once "config/Conexion.php";
-//require_once "controllers/ProductoController.php";
+require_once "controllers/UsuarioController.php";
 
 // Iniciar sesión
 session_start();
