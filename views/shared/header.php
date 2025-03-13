@@ -39,24 +39,8 @@
                         <li><a class="dropdown-item" href="index.php?controlador=producto&accion=insert">Crear nuevo</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Clientes
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controlador=cliente&accion=index">Listar</a></li>
-                        <li><a class="dropdown-item" href="index.php?controlador=cliente&accion=insert">Crear nuevo</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Facturas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controlador=venta&accion=index">Listar</a></li>
-                        <li><a class="dropdown-item" href="index.php?controlador=venta&accion=insert">Nueva Venta</a></li>
-                    </ul>
-                </li>
+                
+               
             </ul>
             <!-- Botón de cerrar sesión -->
             <ul class="navbar-nav ml-auto">

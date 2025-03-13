@@ -40,7 +40,7 @@
                         <h3>Iniciar Sesión</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="index.php?controlador=login&accion=index">
+                        <form method="POST" action="index.php?controller=producto&accion=store">
                             <!-- Usuario -->
                             <div class="mb-3">
                                 <label for="username" class="form-label">Usuario:</label>
