@@ -23,7 +23,7 @@
     <div class="container">
         <a class="navbar-brand" href="./">
             <img src="./assets/img/invoice.png" alt="logo">
-            <span class="span-logo">Factu</span>Soft
+            <span class="span-logo">D2</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
