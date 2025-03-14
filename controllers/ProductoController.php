@@ -56,5 +56,14 @@ class ProductoController
     
         $this->index();
     }
-    
+
+    //eliminar producto
+    public function delete($id_producto)
+    {
+        $producto = new Producto();
+        $producto->delete($id_producto);
+        $this->index();
+    }
 }
+
+?>
