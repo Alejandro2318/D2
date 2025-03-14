@@ -40,7 +40,7 @@
                         <h3>Iniciar Sesión</h3>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="index.php?controller=producto&accion=store">
+                        <form method="POST" action="index.php?controlador=login&accion=index">
                             <!-- Usuario -->
                             <div class="mb-3">
                                 <label for="username" class="form-label">Usuario:</label>
@@ -56,10 +56,7 @@
                                 <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                             </div>
                             
-                             <!-- Botón de Iniciar Sesión -->
-                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
-                            </div>
+                            
                         </form>
 
                         <!-- Mensaje de error -->
