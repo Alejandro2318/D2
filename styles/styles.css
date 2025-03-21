@@ -1,0 +1,167 @@
+:root {
+    --princpal: #182D2B;
+    --secundario: #478681;
+    --fuente: #ffff;
+    --botonVer: #549F99;
+    --botonActualizar: #356360;
+    --botonEliminar: #03282C;
+}
+/* REINICIAR VALORES DEL DOC */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* COLOR HEADER */
+.navbar{
+    background-color:rgba(59, 112, 107, 0.2) !important; 
+}
+/* LOGO */
+img{
+    background-color:rgba(59, 112, 107, 1);
+    width: 136px;
+    height: 131px;
+    border-radius: 30px;
+}
+/* CUERPO -- ABAJO CABECERA */
+
+body{
+    background-color: var(--princpal);
+}
+
+/* boton cerrar  */
+
+.bg-danger{
+    transition: all 0.3s ease;
+    height: 60px;
+    width: auto;
+    background-color: var(--secundario) !important;
+    font-size: 32px;
+    border-radius: 20px;
+    border: none;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* efecto boton */
+.bg-danger:hover{
+    height: 62px;
+    width: auto;
+    background-color: var(--secundario) !important;
+    border: 1px solid black
+
+}
+/* TEXTOS HEADER */
+
+.nav-link{
+    font-size: 28px;
+    color: var(--fuente);
+    margin-left: 50px;
+  
+ 
+}
+
+/* ICONOS */
+.icono {
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+    position: relative;
+    left: 5%;
+    
+}
+
+.iconoP{
+    width: 500PX;
+    height: 176PX;
+   
+}
+
+
+
+
+.containerP {
+    background-color: #21322f;
+    border: 3px solid var(--secundario);
+    border-radius: 30px;
+    color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 700px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+
+    /* Centramos sin afectar el header */
+    position: relative;
+    margin: 50px auto; /* Ajusta según la altura de tu header */
+}
+
+/* Sección de iconos
+.iconos-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+} */
+/* Iconos */
+.iconoP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+/* Tamaño de los iconos */
+.iconoP svg {
+    width: 200%;
+    height: 200%;
+}
+
+
+/* Contenedores de los campos del formulario */
+.formulario__cont-sec {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin: 0 auto; /* Centra el contenedor */
+
+    
+}
+
+/* Inputs del formulario */
+.formulario__cont-input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    color: #000;
+}
+
+/* Botón */
+.btn {
+    background-color: #4a7368;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Cambio de color al pasar el mouse */
+.btn:hover {
+    background-color: var(--botonVer); /* Un verde más oscuro */
+}
+
+
+
