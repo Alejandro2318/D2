@@ -1,0 +1,68 @@
+:root {
+    --princpal: #182D2B;
+    --secundario: #478681;
+    --fuente: #ffff;
+    --botonVer: #549F99;
+    --botonActualizar: #356360;
+    --botonEliminar: #03282C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar{
+    background-color:rgba(59, 112, 107, 0.2) !important; 
+}
+
+img{
+    background-color:rgba(59, 112, 107, 1);
+    width: 136px;
+    height: 131px;
+    border-radius: 30px;
+}
+
+
+
+body{
+    background-color: var(--princpal);
+}
+
+.bg-danger{
+    transition: all 0.3s ease;
+    height: 60px;
+    width: auto;
+    background-color: var(--secundario) !important;
+    font-size: 32px;
+    border-radius: 20px;
+    border: none;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.bg-danger:hover{
+    height: 62px;
+    width: auto;
+    background-color: var(--secundario) !important;
+    border: 1px solid black
+
+}
+
+.nav-link{
+    font-size: 28px;
+    color: var(--fuente);
+    margin-left: 120px;
+}
+
+.nav-link:hover{
+    transition: all 0.3s ease;
+    color: var(--fuente);
+    font-size: 30px;
+}
+.iconoPerson {
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+}
