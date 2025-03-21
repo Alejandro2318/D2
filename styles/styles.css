@@ -62,6 +62,14 @@ body{
  
 }
 
+/* ANIMACION DE LOS TEXTOS*/
+
+.nav-link:hover{
+    transition: all 0.3s ease;
+    color: var(--fuente);
+    font-size: 30px;
+}
+
 /* ICONOS */
 .icono {
     display: flex;
