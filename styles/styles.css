@@ -7,16 +7,22 @@
     --botonEliminar: #03282C;
 }
 
+
+/* REINICIAR VALORES DEL DOC */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* COLOR HEADER */
 .navbar{
     background-color:rgba(59, 112, 107, 0.2) !important; 
 }
 
+
+/* LOGO */
 img{
     background-color:rgba(59, 112, 107, 1);
     width: 136px;
@@ -26,9 +32,14 @@ img{
 
 
 
+/* CUERPO -- ABAJO CABECERA */
+
 body{
     background-color: var(--princpal);
 }
+
+
+/* COLOR BOTON Y OTRAS COSAS */
 
 .bg-danger{
     transition: all 0.3s ease;
@@ -43,6 +54,8 @@ body{
     justify-content: center !important;
 }
 
+/* ANIMACION BTN */
+
 .bg-danger:hover{
     height: 62px;
     width: auto;
@@ -51,18 +64,33 @@ body{
 
 }
 
+
+
+/* TEXTOS HEADER */
+
 .nav-link{
     font-size: 28px;
     color: var(--fuente);
-    margin-left: 120px;
+    margin-left: 50px;
+  
+ 
 }
+
+
+/* ANIMACION DE LOS TEXTOS*/
 
 .nav-link:hover{
     transition: all 0.3s ease;
     color: var(--fuente);
     font-size: 30px;
 }
-.iconoPerson {
+
+
+/* ICONOS */
+.icono {
     display: flex;
     justify-content: center; /* Centra verticalmente */
+    position: relative;
+    left: 5%;
+    
 }
