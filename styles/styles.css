@@ -1,0 +1,113 @@
+:root {
+    --princpal: #182D2B;
+    --secundario: #478681;
+    --fuente: #ffff;
+    --botonVer: #549F99;
+    --botonActualizar: #356360;
+    --botonEliminar: #03282C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--princpal);
+}
+
+
+.cuerpo {
+    display: block;
+    margin-top: 80px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(71, 134, 73, 0.2);
+    border-top: 400px;
+    border-radius: 20px;
+    border: 5px solid white
+}
+
+.my-5 {
+    color: var(--fuente);
+    font-size: 60px;
+    font-weight: 400px;
+}
+
+.table-hover {
+    color: var(--fuente);
+    font-size: 36px;
+    font-weight: lighter;
+}
+
+.btn {
+    transition: all 0.3s ease;
+    width: 170px;
+    margin-right: 30px;
+    font-size: 33px;
+    color: var(--fuente);
+    border-radius: 10px;
+    border: none;
+}
+
+.btn:hover {
+    color: var(--fuente);
+}
+
+.btn-info {
+    background-color: var(--botonVer);
+
+}
+
+.btn-info:hover {
+    background-color: var(--botonVer);
+    border: 1px solid black;
+    width: 190px;
+}
+
+.btn-warning {
+    background-color: var(--botonActualizar);
+
+}
+
+.btn-warning:hover {
+    background-color: var(--botonActualizar);
+    border: 1px solid black;
+    width: 190px;
+}
+
+.btn-danger {
+    background-color: var(--botonEliminar);
+
+}
+
+.btn-danger:hover {
+    background-color: var(--botonEliminar);
+    border: 1px solid black;
+    width: 190px;
+}
+
+thead{
+    text-align: center;
+}
+
+td:last-child {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+tbody td:first-child {
+    padding-left: 5%;
+}
+
+
+tbody tr:hover td:first-child:hover {
+    color: var(--fuente) 
+}
+
+
+
+

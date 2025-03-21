@@ -20,8 +20,6 @@
                         required>
                 </div>
 
-
-
                 <div class="formulario__cont-sec">
                     <label for="id_cargo" class="form-label">Cargo</label>
                     <select id="id_cargo" name="id_cargo" class="form-control" required>
