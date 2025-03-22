@@ -19,7 +19,6 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container">
             <a class="navbar-brand" href="./">
@@ -164,6 +163,5 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </nav>
