@@ -77,18 +77,28 @@
 </head>
 
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="logo-container">
-                <img src="styles/img/logoD2.png" alt="D2 Minimarket Logo" class="logo">
-            </div>
-            <form method="POST" action="index.php?controlador=login&accion=index">
-                <input type="text" name="username" placeholder="Usuario" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header text-center">
+                        <h3>Iniciar Sesión</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="index.php?controlador=login&accion=index">
+                            <!-- Usuario -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Usuario:</label>
+                                <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <!-- Contraseña -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <!-- Botón de Iniciar Sesión -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            </div>
+                            
+                        </form>

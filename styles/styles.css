@@ -6,16 +6,19 @@
     --botonActualizar: #356360;
     --botonEliminar: #03282C;
 }
+
 /* REINICIAR VALORES DEL DOC */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 /* COLOR HEADER */
 .navbar{
     background-color:rgba(59, 112, 107, 0.2) !important; 
 }
+
 /* LOGO */
 img{
     background-color:rgba(59, 112, 107, 1);
@@ -23,13 +26,12 @@ img{
     height: 131px;
     border-radius: 30px;
 }
+
 /* CUERPO -- ABAJO CABECERA */
 
 body{
     background-color: var(--princpal);
 }
-
-/* boton cerrar  */
 
 .bg-danger{
     transition: all 0.3s ease;
@@ -44,7 +46,6 @@ body{
     justify-content: center !important;
 }
 
-/* efecto boton */
 .bg-danger:hover{
     height: 62px;
     width: auto;
@@ -52,6 +53,7 @@ body{
     border: 1px solid black
 
 }
+
 /* TEXTOS HEADER */
 
 .nav-link{
@@ -78,6 +80,7 @@ body{
     left: 5%;
     
 }
+
 
 .iconoP{
     width: 500PX;
@@ -170,6 +173,4 @@ body{
 .btn:hover {
     background-color: var(--botonVer); /* Un verde más oscuro */
 }
-
-
 

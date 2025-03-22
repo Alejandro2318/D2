@@ -27,7 +27,9 @@ class LoginController {
             // Iniciar sesión y redirigir a las ventas
             $_SESSION['authenticated'] = true;
             $_SESSION['nombre_usuario'] = $nombre_usuario;
-            header('Location: index.php?controlador=producto&accion=index');
+          
+            header('Location: index.php?controlador=usuario&accion=index');
+
         } else {
             // Mostrar un error de autenticación
             $error = "Usuario o contraseña incorrectos";
