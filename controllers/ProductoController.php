@@ -31,7 +31,9 @@ class ProductoController
     {
         // Se crea una instancia de la clase Categoria para obtener las categorías disponibles
         $productos = new Producto();
+
         $data['titulo'] = "Registrar Producto"; // Título de la vista
+
         $data['categorias'] = $productos->obtenerCategorias(); // Se obtiene la lista de categorías desde la base de datos
 
 
@@ -57,6 +59,48 @@ class ProductoController
         $this->index();
     }
 
+
+    public function ver()
+{
+    $id = $_GET['id'];
+    $producto = new Producto();
+    $data["producto"] = $producto->obtenerPorId($id);
+    require_once "views/productos/ver.php"; // Asegúrate de que este archivo existe
+}
+
+public function editar()
+{
+    $id = $_GET['id'];
+    $producto = new Producto();
+    $data["producto"] = $producto->obtenerPorId($id);
+    require_once "views/productos/editar.php"; // Asegúrate de que este archivo existe
+}
+
+public function actualizar()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $id_producto = $_POST["id"];
+        $nombre_producto = $_POST["nombre"];
+        $precio_producto = $_POST["precio"];
+        $cantidad_producto = $_POST["cantidad"];
+        $fecha_caducidad = $_POST["fecha_caducidad"];
+        $es_perecedero = $_POST["es_perecedero"];
+        $id_categoria = $_POST["id_categoria"];
+
+        $producto = new Producto();
+        $producto->actualizar($id_producto, $nombre_producto, $precio_producto, $cantidad_producto, $fecha_caducidad, $es_perecedero, $id_categoria);
+
+        header("Location: index.php?controlador=producto&accion=index");
+        exit(); // Asegura que no haya ejecución adicional
+    }
+}
+
+
+    
+   
+    
+}
+
     //eliminar producto
     public function delete($id_producto)
     {
@@ -67,3 +111,4 @@ class ProductoController
 }
 
 ?>
+
