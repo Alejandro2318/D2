@@ -31,7 +31,9 @@ class ProductoController
     {
         // Se crea una instancia de la clase Categoria para obtener las categorías disponibles
         $productos = new Producto();
-        $data['titulo'] = "Crear producto"; // Título de la vista
+
+        $data['titulo'] = "Registrar Producto"; // Título de la vista
+
         $data['categorias'] = $productos->obtenerCategorias(); // Se obtiene la lista de categorías desde la base de datos
 
 
@@ -56,6 +58,7 @@ class ProductoController
     
         $this->index();
     }
+
 
     public function ver()
 {
@@ -97,3 +100,15 @@ public function actualizar()
    
     
 }
+
+    //eliminar producto
+    public function delete($id_producto)
+    {
+        $producto = new Producto();
+        $producto->delete($id_producto);
+        $this->index();
+    }
+}
+
+?>
+
