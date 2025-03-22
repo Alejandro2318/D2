@@ -85,11 +85,11 @@
                             Productos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=index">Listar
+                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=index">Listar
                                     Productos</a>
                             </li>
 
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=insert">Crear
+                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=insert">Crear
 
                                     nuevo Producto</a></li>
                         </ul>
