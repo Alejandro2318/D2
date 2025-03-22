@@ -55,7 +55,6 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                             </div>
-
                             
                         </form>
 
