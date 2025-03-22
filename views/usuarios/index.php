@@ -23,4 +23,12 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmarEliminacion(id) {
+        if (confirm("¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.")) {
+            window.location.href = "index.php?controlador=producto&accion=delete&id=" + id;
+        }
+    }
+</script>
 <?php require "views/shared/footer.php" ?>

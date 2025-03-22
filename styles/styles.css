@@ -126,10 +126,6 @@ tbody tr:hover td:first-child:hover {
     color: var(--fuente) 
 }
 
-
-
-
-=======
 .bg-danger {
     transition: all 0.3s ease;
     height: 60px;
@@ -257,7 +253,7 @@ tbody tr:hover td:first-child:hover {
 }
 
 /* Botón */
-.btn {
+.btnform {
     background-color: #4a7368;
     border: none;
     padding: 10px 20px;

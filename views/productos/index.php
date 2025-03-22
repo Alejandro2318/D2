@@ -1,6 +1,6 @@
 <?php require "views/shared/header.php" ?>
 
-<div class="container">
+<div class="container cuerpo">
   <h1 class="text-center my-5"><?= $data['titulo'] ?></h1>
   <table class="table table-hover">
         <thead>
