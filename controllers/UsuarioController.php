@@ -71,6 +71,15 @@ class UsuarioController
         $id_cargo = $_POST['id_cargo'];
 
         $usuarios = new Usuario();
+        // Se obtiene el usuario que esta en la base de datos 
+        $usuarioActual = $usuarios->getUsuario($id_usuario);
+        
+        // Se verifica si agrego un nuevo valor en los campos y se comparan con los que ya estan
+        $nombre_usuario = !empty($_POST['nombre_usuario']) ? $_POST['nombre_usuario'] : $usuarioActual['nombre_usuario'];
+        $contraseña = !empty($_POST['contraseña']) ? $_POST['contraseña'] : $usuarioActual['contraseña'];
+        $id_cargo = !empty($_POST['id_cargo']) ? $_POST['id_cargo'] : $usuarioActual['id_cargo'];
+
+        // Se actualizan los datos
         $usuarios->update($id_usuario, $nombre_usuario, $contraseña, $id_cargo);
         $this->index();
     }
@@ -81,6 +90,7 @@ class UsuarioController
         $usuarios->delete($id_usuario);
         $this->index();
     }
+
 }
 
 ?>

@@ -106,15 +106,18 @@ body {
     width: 190px;
 }
 
-thead{
+
+
+
+thead {
     text-align: center;
 }
 
 td:last-child {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 tbody td:first-child {
@@ -123,13 +126,9 @@ tbody td:first-child {
 
 
 tbody tr:hover td:first-child:hover {
-    color: var(--fuente) 
+    color: var(--fuente)
 }
 
-
-
-
-=======
 .bg-danger {
     transition: all 0.3s ease;
     height: 60px;
@@ -178,15 +177,8 @@ tbody tr:hover td:first-child:hover {
     left: 5%;
 
 }
+
 /* ESTILOS NORVY */
-
-.iconoP {
-    width: 500PX;
-    height: 176PX;
-}
-
-
-
 
 .containerP {
     background-color: #21322f;
@@ -257,7 +249,7 @@ tbody tr:hover td:first-child:hover {
 }
 
 /* Botón */
-.btn {
+.btnform {
     background-color: #4a7368;
     border: none;
     padding: 10px 20px;
@@ -270,7 +262,7 @@ tbody tr:hover td:first-child:hover {
 }
 
 /* Cambio de color al pasar el mouse */
-.btn:hover {
+.btnform:hover {
     background-color: var(--botonVer);
     /* Un verde más oscuro */
 }
@@ -398,6 +390,33 @@ button {
 
 button:hover {
     background-color: #356A5C;
-    font-size: 23px;
+    font-size: 33px;
 }
 
+.btn-secondary {
+    background-color: gray;
+}
+
+.btn-secondary:hover {
+    background-color: gray;
+    border: 1px solid black;
+    width: 190px;
+    height: auto;
+}
+
+.modal-title{
+    color: red;
+    font-size: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.modal-body{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+}
