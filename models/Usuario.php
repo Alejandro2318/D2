@@ -100,6 +100,7 @@ class Usuario
 
         $resultado = $this->db->query($sql);
     }
+
 }
 
 ?>
