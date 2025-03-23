@@ -84,5 +84,7 @@ class Producto
         $resultado = $this->db->query($sql);
     }
 
+
+
     // VIEW GET USUARIO 
 }
