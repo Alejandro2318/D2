@@ -84,7 +84,33 @@ class Producto
         $resultado = $this->db->query($sql);
     }
 
+<<<<<<< HEAD
+    public function obtenerProducto($id_producto) {
+        $sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, cantidad_producto, es_perecedero, fecha_caducidad 
+                FROM productos 
+                WHERE id_producto = $id_producto";
+        
+        $resultado = $this->db->query($sql);
+            $row = $resultado->fetch_assoc();
+            return $row;
+        }
+        public function update($id_producto, $nombre_producto, $precio_producto, $cantidad_producto, $fecha_caducidad, $es_perecedero, $id_categoria)
+    {
+        $fecha_caducidad = $es_perecedero ? "'$fecha_caducidad'" : "NULL";
+        $sql = "UPDATE productos 
+            SET nombre_producto = '$nombre_producto', 
+                precio_producto = $precio_producto, 
+                cantidad_producto = $cantidad_producto, 
+                fecha_caducidad = $fecha_caducidad, 
+                es_perecedero = $es_perecedero, 
+                id_categoria = $id_categoria 
+            WHERE id_producto = $id_producto";
+
+        $resultado = $this->db->query($sql);
+    }
+=======
 
 
     // VIEW GET USUARIO 
+>>>>>>> bc7206fb302ab7b0f6527f255edbe84ad88e5bdb
 }

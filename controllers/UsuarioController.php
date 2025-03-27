@@ -91,6 +91,8 @@ class UsuarioController
         $this->index();
     }
 
+    
+
 }
 
 ?>
