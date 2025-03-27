@@ -73,14 +73,20 @@ class Usuario
     // Obtener la información de un Producto
     public function getUsuario($id_usuario)
     {
-        $sql = "SELECT * 
-                FROM usuario
-                WHERE id_usuario = $id_usuario";
-        
-        $resultado = $this->db->query($sql);
-        $row = $resultado->fetch_assoc();
-        return $row;
+        $sql = "SELECT usuario.id_usuario, usuario.nombre_usuario, cargo.tipo_cargo 
+                  FROM usuario
+                  INNER JOIN cargo ON usuario.id_cargo = cargo.id_cargo 
+                  WHERE usuario.id_usuario = $id_usuario";
+    
+        $result = $this->db->query($sql); // Ejecutar la consulta
+    
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc(); // Devolver los datos como un array asociativo
+        } else {
+            return null; // Retornar null si no encuentra resultados
+        }
     }
+    
 
     // Actualizar el Producto
     public function update($id_usuario, $nombre_usuario, $contraseña, $id_cargo)
