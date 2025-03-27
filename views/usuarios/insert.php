@@ -19,7 +19,6 @@ if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
 }
 ?>
 
-<?php require "views/shared/header.php" ?>
 
 <div class="containerP">
     <h1 class="text-center my-5">
