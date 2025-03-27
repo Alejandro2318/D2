@@ -84,6 +84,7 @@ class Producto
         $resultado = $this->db->query($sql);
     }
 
+<<<<<<< HEAD
     public function obtenerProducto($id_producto) {
         $sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, cantidad_producto, es_perecedero, fecha_caducidad 
                 FROM productos 
@@ -107,4 +108,9 @@ class Producto
 
         $resultado = $this->db->query($sql);
     }
+=======
+
+
+    // VIEW GET USUARIO 
+>>>>>>> bc7206fb302ab7b0f6527f255edbe84ad88e5bdb
 }
