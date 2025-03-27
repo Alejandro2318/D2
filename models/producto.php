@@ -75,6 +75,34 @@ class Producto
             throw new Exception("Error en la inserción: " . $this->db->error);
         }
     }
+
+    //ver el producto
+    public function getProducto($id_producto)
+    {
+        $sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, 
+                       productos.cantidad_producto, categoria.tipo_categoria, 
+                       IF(productos.es_perecedero = 1, 'Sí', 'No') AS es_perecedero, 
+                       productos.fecha_caducidad
+                FROM productos
+                INNER JOIN categoria ON productos.id_categoria = categoria.id_categoria
+                WHERE id_producto = $id_producto";
+    
+        $result = $this->db->query($sql); // Ejecutar la consulta
+        
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc(); // Devolver los datos con "Sí" o "No"
+        } else {
+            return null; // Retornar null si no encuentra resultados
+        }
+    }
+    
+
+
+
+
+
+
+
     //eliminar el producto
     public function delete($id_producto)
     {

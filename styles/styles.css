@@ -44,7 +44,8 @@ body {
     background-color: rgba(71, 134, 73, 0.2);
     border-top: 400px;
     border-radius: 20px;
-    border: 5px solid white
+    border: 5px solid white;
+
 }
 
 .my-5 {
@@ -421,6 +422,7 @@ button:hover {
     justify-content: center;
 }
 
+
 #custom-alert-overlay {
     position: fixed;
     top: 0;
@@ -476,3 +478,38 @@ button:hover {
         transform: translateY(0);
     }
 }
+
+/* para el boton de ver---diseño css */
+
+.text-dark {
+color: var(--fuente)  !important;
+font-size: 36px;
+margin: 25px;
+}
+
+
+hr {
+    border-bottom: 3px solid  white; /* Línea de 5px de grosor */
+}
+
+
+.btn-ver {
+    transition: all 0.3s ease;
+    width: 170px;
+    font-size: 33px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--botonVer);
+}
+
+/* Efecto de agrandamiento sin cambiar el color de fondo */
+.btn-ver:hover {
+    color: var(--fuente);
+    transform: scale(1.1); /* Agranda el botón un 10% */
+    background-color: var(--botonVer); /* Mantiene el color original */
+}
+

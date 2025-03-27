@@ -57,6 +57,17 @@ class ProductoController
         $this->index();
     }
 
+
+     // Visualizar la información de un registro
+     public function view($id_producto)
+     {
+         $productos = new Producto();
+         $data['titulo'] = "Detalle del Producto";
+         $data['productos'] = $productos->getProducto($id_producto);
+         require_once "views/productos/view.php";
+     }
+ 
+
     //eliminar producto
     public function delete($id_producto)
     {

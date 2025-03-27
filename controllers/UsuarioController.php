@@ -48,7 +48,7 @@ class UsuarioController
     {
         $usuarios = new Usuario();
         $data['titulo'] = "Detalle del Usuario";
-        $data['usuarios'] = $usuarios->getUsuario($id_usuario);
+        $data['usuario'] = $usuarios->getUsuario($id_usuario);
         require_once "views/usuarios/view.php";
     }
 
