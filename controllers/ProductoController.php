@@ -9,7 +9,7 @@ class ProductoController
     {
         // Se requiere el archivo que contiene la definición de la clase Producto
         require_once "models/producto.php";
-        
+
     }
 
     // Método que muestra la lista de productos en la vista principal
@@ -47,13 +47,13 @@ class ProductoController
         $cantidad_producto = $_POST['cantidad_producto'];
         $id_categoria = $_POST['id_categoria'];
         $es_perecedero = isset($_POST['es_perecedero']) ? intval($_POST['es_perecedero']) : 0;
-    
+
         // Si el producto es perecedero, obtener la fecha de caducidad. Si no, asignar NULL.
         $fecha_caducidad = ($es_perecedero === 1 && !empty($_POST['fecha_caducidad'])) ? $_POST['fecha_caducidad'] : null;
-    
+
         $productos = new Producto();
         $productos->insert($nombre_producto, $precio_producto, $cantidad_producto, $id_categoria, $es_perecedero, $fecha_caducidad);
-    
+
         $this->index();
     }
 
@@ -75,6 +75,42 @@ class ProductoController
         $producto->delete($id_producto);
         $this->index();
     }
+
+    public function edit($id_producto)
+    {
+        $producto = new Producto();
+        $data['titulo'] = "Actualizar producto";
+        $data['producto'] = $producto->obtenerProducto($id_producto);
+        $data['id_producto'] = $id_producto;
+        $data['categorias'] = $producto->obtenerCategorias();
+        require_once "views/productos/edit.php";
+    }
+
+    public function update()
+    {
+        // recibir los datos del formulario
+        $id_producto = $_POST['id_producto'];
+    
+        $producto = new Producto();
+    
+        // Se obtiene el producto actual que está en la base de datos
+        $productoActual = $producto->obtenerProducto($id_producto);
+    
+        // Se verifica si hay un nuevo valor; si no, mantiene el valor actual
+        $nombre_producto = !empty($_POST['nombre_producto']) ? $_POST['nombre_producto'] : $productoActual['nombre_producto'];
+        $precio_producto = !empty($_POST['precio_producto']) ? $_POST['precio_producto'] : $productoActual['precio_producto'];
+        $cantidad_producto = !empty($_POST['cantidad_producto']) ? $_POST['cantidad_producto'] : $productoActual['cantidad_producto'];
+        $fecha_caducidad = !empty($_POST['fecha_caducidad']) ? $_POST['fecha_caducidad'] : $productoActual['fecha_caducidad'];
+        $es_perecedero = isset($_POST['es_perecedero']) ? $_POST['es_perecedero'] : $productoActual['es_perecedero'];
+        $id_categoria = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : $productoActual['id_categoria'];
+    
+        // Actualiza el producto
+        $producto->update($id_producto, $nombre_producto, $precio_producto, $cantidad_producto, $fecha_caducidad, $es_perecedero, $id_categoria);
+    
+        // Redirige al listado de productos
+        $this->index();
+    }
+    
 }
 
 ?>

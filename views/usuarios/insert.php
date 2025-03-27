@@ -1,3 +1,24 @@
+<?php
+require "views/shared/header.php"; 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
+
+    echo '
+        <div id="custom-alert-overlay">
+            <div id="custom-alert-box">
+                <h5 class="custom-alert-title">Acceso Denegado</h5>
+                <p>Solo los administradores pueden agregar nuevos productos.</p>
+                <button id="close-alert-btn">Cerrar</button>
+            </div>
+        </div>
+    ';
+    exit;
+}
+?>
+
 <?php require "views/shared/header.php" ?>
 
 <div class="containerP">

@@ -422,6 +422,63 @@ button:hover {
     justify-content: center;
 }
 
+
+#custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+#custom-alert-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease;
+}
+
+.custom-alert-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #dc3545;
+}
+
+#close-alert-btn {
+    margin-top: 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#close-alert-btn:hover {
+    background-color: #c82333;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* para el boton de ver---diseño css */
 
 .text-dark {
@@ -455,3 +512,4 @@ hr {
     transform: scale(1.1); /* Agranda el botón un 10% */
     background-color: var(--botonVer); /* Mantiene el color original */
 }
+

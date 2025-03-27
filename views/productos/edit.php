@@ -1,25 +1,3 @@
-<?php
-require "views/shared/header.php"; 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
-
-    echo '
-        <div id="custom-alert-overlay">
-            <div id="custom-alert-box">
-                <h5 class="custom-alert-title">Acceso Denegado</h5>
-                <p>Solo los administradores pueden agregar nuevos productos.</p>
-                <button id="close-alert-btn">Cerrar</button>
-            </div>
-        </div>
-    ';
-    exit;
-}
-?>
-
-
 <?php require "views/shared/header.php" ?>
 
 <div class="containerP">
@@ -45,24 +23,24 @@ if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
     </div>
 
 
-    <form class="formulario mb-5" action="index.php?controlador=producto&accion=store" method="post">
-
+    <form class="formulario mb-5" action="index.php?controlador=producto&accion=update" method="post">
+    <input type="hidden" name="id_producto" value="<?= $data['id_producto'] ?>">
         <div class="formulario__cont">
             <div class="formulario__cont2">
                 <div class="formulario__cont-sec">
                     <label for="nombre_producto" class="form-label">Nombre producto</label>
                     <input type="text" class="formulario__cont-input form-control" id="nombre_producto"
-                        name="nombre_producto" required>
+                        name="nombre_producto" >
                 </div>
                 <div class="formulario__cont-sec">
                     <label for="precio_producto" class="form-label">Precio</label>
                     <input type="number" class="formulario__cont-input form-control" id="precio_producto"
-                        name="precio_producto" required>
+                        name="precio_producto" >
                 </div>
                 <div class="formulario__cont-sec">
                     <label for="cantidad_producto" class="form-label">Cantidad</label>
                     <input type="number" class="formulario__cont-input form-control" id="cantidad_producto"
-                        name="cantidad_producto" required>
+                        name="cantidad_producto" >
                 </div>
                 <div class="formulario__cont-sec">
                     <label class="form-label">¿Es perecedero?</label>
@@ -111,7 +89,7 @@ if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
 
                 <div class="formulario__cont-sec">
                     <label for="id_categoria" class="form-label">Categoria</label>
-                    <select id="id_categoria" name="id_categoria" class="form-control" required>
+                    <select id="id_categoria" name="id_categoria" class="form-control" >
                         <?php foreach ($data['categorias'] as $categorias): ?>
                             <option value="<?= $categorias['id_categoria']; ?>">
                                 <?= htmlspecialchars($categorias['tipo_categoria']); ?>
@@ -124,9 +102,8 @@ if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
 
         </div>
 
-        <button type="submit" class="btnform btn-primary">Crear</button>
+        <button type="button" class="btnform btn-primary" onclick="updateConfirmModal('producto')">Guardar</button>
     </form>
-    
 </div>
 
 <?php require "views/shared/footer.php" ?>
