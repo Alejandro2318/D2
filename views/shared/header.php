@@ -120,9 +120,9 @@
                             Ventas
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=index">Listar</a>
+                            <li><a class="dropdown-item" href="index.php?controlador=factura&accion=index">Listar</a>
                             </li>
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=insert">Crear
+                            <li><a class="dropdown-item" href="index.php?controlador=factura&accion=insert">Crear
                                     nuevo</a></li>
                         </ul>
                     </li>
