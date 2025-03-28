@@ -36,46 +36,20 @@
     </div>
 </div>
 
-
-<!-- Eliminar elemento -->
-<script>
-    let deleteUrl = '';
-
-    function confirmarEliminacion(url, tipo) {
-        deleteUrl = url;
-        const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-        const mensaje = tipo === 'usuario' 
-            ? '¿Estás seguro de que deseas eliminar este usuario?' 
-            : '¿Estás seguro de que deseas eliminar este producto?';
-
-        document.querySelector('#confirmModal .modal-body').innerText = mensaje;
-        modal.show();
-    }
-
-    document.getElementById('confirmBtn').addEventListener('click', () => {
-        window.location.href = deleteUrl;
-    });
-
-// Actualizar elemento
-
-
-function updateConfirmModal(tipo) {
-    const modal = new bootstrap.Modal(document.getElementById('updateConfirmModal'));
-    const mensaje = tipo === 'usuario'
-        ? '¿Estás seguro de que deseas actualizar este usuario?' 
-        : '¿Estás seguro de que deseas actualizar este producto?';
-
-    document.querySelector('#updateConfirmModal .modal-body').innerText = mensaje;
-
-    // Si el usuario confirma, enviamos el formulario directamente
-    document.getElementById('updateConfirmBtn').onclick = (event) => {
-        event.preventDefault(); // ✅ Evitar comportamiento inesperado
-        document.querySelector('form.formulario').submit(); // ✅ Enviar formulario correctamente
-    };
-
-    modal.show();
-}
-
-    
-</script>
-
+<!-- Modal para acceso denegado -->
+<div class="modal fade" id="accessDeniedModal" tabindex="-1" aria-labelledby="accessDeniedModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="accessDeniedModalLabel">Acceso Denegado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Solo los administradores pueden agregar nuevos productos.
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

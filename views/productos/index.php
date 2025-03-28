@@ -18,11 +18,13 @@
                     <td>
                         <a href="index.php?controlador=producto&accion=view&id=<?= $item['id_producto'] ?>"
                             class="btn btn-info">Ver</a>
+                            <?php if (isset($_SESSION['id_cargo']) && $_SESSION['id_cargo'] == 1) { ?>
                         <a href="index.php?controlador=producto&accion=edit&id=<?= $item['id_producto'] ?>"
                             class="btn btn-warning">Actualizar</a>
                         <a href="index.php?controlador=producto&accion=delete&id=<?= $item['id_producto'] ?>"
                             class="btn btn-danger"
                             onclick="event.preventDefault(); confirmarEliminacion(this.href, 'producto')">Eliminar</a>
+                            <?php } ?>    
                     </td>
                 </tr>
             <?php } ?>

@@ -24,10 +24,12 @@ class LoginController {
 
         // Verificar si existe el usuario
         if ($result->num_rows > 0) {
+
+            $datosUsuario = $result->fetch_assoc(); // Obtener el resultado como array asociativo
             // Iniciar sesión y redirigir a las ventas
             $_SESSION['authenticated'] = true;
             $_SESSION['nombre_usuario'] = $nombre_usuario;
-          
+            $_SESSION['id_cargo'] = $datosUsuario['id_cargo'];
             header('Location: index.php?controlador=usuario&accion=index');
 
         } else {
