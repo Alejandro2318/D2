@@ -5,8 +5,9 @@ class FacturaController {
     {
         require_once "models/Factura.php";
         require_once "models/Usuario.php";
-        require_once "models/producto.php";
+        require_once "models/Producto.php";
         require_once "models/DetalleVenta.php";
+        require_once "models/Caja.php";
     }
 
     public function index()
@@ -19,66 +20,62 @@ class FacturaController {
         require_once "views/factura/index.php";
     }
 
-    // Mostrar la vista para crear el registro (Proyecto)
+    // Mostrar la vista para crear el registro
     public function insert()
     {
         $usuarios = new Usuario();
         $productos = new Producto();
+        $cajas = new Caja();
+        
         $data['titulo'] = "Nueva Factura";
         $data["usuarios"] = $usuarios->listar();
         $data["productos"] = $productos->listar();
+        $data["cajas"] = $cajas->obtenerCaja(); 
+        
         require_once "views/factura/insert.php";
     }
 
-     // Guardar la información en la DB
+    // Guardar la información en la DB
     public function store()
-{
-    $factura = new Factura();
-    $detalleVenta = new DetalleVenta(); // Agregar el modelo de DetalleVenta
+    {
+        $factura = new Factura();
+        $detalleVenta = new DetalleVenta();
 
-    $id_caja = $factura->obtenerCajaActiva();
+        // ✅ Obtener la caja activa
+        $id_caja = $factura->obtenerCajaActiva();
 
-    if (!$id_caja) {
-        die("Error: No hay una caja activa.");
+        if (!$id_caja) {
+            die("Error: No hay una caja activa.");
+        }
+
+        date_default_timezone_set('America/Bogota');
+        $fecha_factura = date('Y-m-d h:i:s A');
+        $total_factura = $_POST['total_factura'] ?? 0;
+
+        // ✅ Insertamos la factura y obtenemos su ID
+        $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
+
+        if (!$id_factura) {
+            die("Error: No se pudo crear la factura.");
+        }
+
+        // ✅ Insertar los productos en detalle_venta
+        $productos = $_POST['productos'] ?? [];
+
+        foreach ($productos as $producto) {
+            if (!empty($producto['id_producto']) && !empty($producto['cantidad']) && !empty($producto['subtotal'])) {
+                $detalleVenta->insert(
+                    $producto['cantidad'],
+                    $producto['subtotal'],
+                    $producto['id_producto'],
+                    $id_factura
+                );
+            }
+        }
+
+        // ✅ Redirigir a la vista de facturas
+        $this->index(); // 🔥 Redirección usando la función directamente
     }
-
-    $fecha_factura = (new DateTime())->format('Y-m-d H:i:s');
-    $total_factura = $_POST['total_factura'] ?? 0;
-
-    // Insertamos la factura y obtenemos su ID
-    $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
-
-    if (!$id_factura) {
-        die("Error: No se pudo crear la factura.");
-    }
-
-    // 4️⃣ Insertar los productos en detalle_venta
-    $productos = $_POST['productos'] ?? [];
-    $detalleVenta = new DetalleVenta();
-
-    foreach ($productos as $producto) {
-        $detalleVenta->insert(
-            $producto['cantidad_producto_venta'],
-            $producto['subtotal'],
-            $producto['id_producto'],
-            $id_factura
-        );
-    }
-
-
-    // Redirigir a la vista de facturas
-    $this->index();
 }
 
-
-
-
-
-    
-    
-    
-    
-
-    
-}
 ?>

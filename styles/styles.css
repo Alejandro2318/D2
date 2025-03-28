@@ -251,6 +251,7 @@ tbody tr:hover td:first-child:hover {
 
 /* Botón */
 .btnform {
+    transition: all 0.3s ease;
     background-color: #4a7368;
     border: none;
     padding: 10px 20px;
@@ -261,7 +262,9 @@ tbody tr:hover td:first-child:hover {
     width: 100%;
     margin-top: 20px;
 }
-
+.venta:hover{
+    font-size: 18px;
+}
 /* Cambio de color al pasar el mouse */
 .btnform:hover {
     background-color: var(--botonVer);
