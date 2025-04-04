@@ -134,4 +134,22 @@ class Producto
 
         $resultado = $this->db->query($sql);
     }
+
+
+
+    // Se agrega esta funcion para actualizar el stock  ATT:ALEJO
+    public function actualizarStock($id_producto, $cantidad_vendida)
+{
+    $sql = "UPDATE productos 
+            SET cantidad_producto = cantidad_producto - $cantidad_vendida 
+            WHERE id_producto = $id_producto";
+
+    $resultado = $this->db->query($sql);
+
+    if (!$resultado) {
+        throw new Exception("Error al actualizar el stock: " . $this->db->error);
+    }
+}
+
+    
 }
