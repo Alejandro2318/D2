@@ -28,7 +28,7 @@ class FacturaController {
         $cajas = new Caja();
         
         $data['titulo'] = "Nueva Factura";
-        $data["usuarios"] = $usuarios->listar();
+        $data["usuarios"] = $usuarios->listarCajeros(); // filtramos los usuarios con id_cargo = 2 que serian cajeros 
         $data["productos"] = $productos->listar();
         $data["cajas"] = $cajas->obtenerCaja(); 
         
@@ -75,6 +75,19 @@ class FacturaController {
 
         // ✅ Redirigir a la vista de facturas
         $this->index(); // 🔥 Redirección usando la función directamente
+    }
+    // Visualizar la información de un registro
+    public function view($id_factura)
+    {
+        $factura = new Factura();
+        $data['titulo'] = "Factura de la venta";
+        $data['factura'] = $factura->getFactura($id_factura);
+
+        $detallesVenta = new DetalleVenta();
+        $data['detallesVenta'] = $detallesVenta->listar($id_factura);
+
+        // Cargar la vista
+        require_once "views/factura/view.php";
     }
 }
 
