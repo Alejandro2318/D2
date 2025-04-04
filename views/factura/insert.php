@@ -1,4 +1,18 @@
 <?php require "views/shared/header.php" ?>
+<?php if (isset($_SESSION['cajaCerrada']) && $_SESSION['cajaCerrada']){
+
+echo '
+    <div id="custom-alert-overlay">
+        <div id="custom-alert-box">
+            <h5 class="custom-alert-title">Caja cerrada</h5>
+            <p>Debes abrir la caja para poder realizar una venta</p>
+            <button class="botonCerrar" id="close">Cerrar</button>
+        </div>
+    </div>
+';
+exit;
+}
+?>
 
 <div class="containerP">
     <h1 class="text-center my-5"><?= $data['titulo'] ?></h1>
@@ -12,17 +26,6 @@
                     <option value="" disabled selected>-- Seleccione --</option>
                     <?php foreach ($data['usuarios'] as $item) { ?>
                         <option value="<?= $item['id_usuario'] ?>"><?= $item['nombre_usuario'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-
-            <!-- Caja -->
-            <div class="formulario__cont-sec">
-                <label for="id_caja" class="form-label">Caja</label>
-                <select id="id_caja" name="id_caja" class="form-select w-100 formulario__cont-select" required>
-                    <option value="" disabled selected>-- Seleccione --</option>
-                    <?php foreach ($data['cajas'] as $item) { ?>
-                        <option value="<?= $item['id_caja'] ?>"><?= $item['id_caja'] ?></option>
                     <?php } ?>
                 </select>
             </div>

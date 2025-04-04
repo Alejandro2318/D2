@@ -11,13 +11,16 @@ if (!isset($_SESSION['id_cargo']) || $_SESSION['id_cargo'] != 1) {
             <div id="custom-alert-box">
                 <h5 class="custom-alert-title">Acceso Denegado</h5>
                 <p>Solo los administradores pueden agregar nuevos productos.</p>
-                <button id="close-alert-btn">Cerrar</button>
+                <button class="botonCerrar" id="close-alert-btn">Cerrar</button>
             </div>
         </div>
     ';
     exit;
 }
 ?>
+
+<?php require_once "views/shared/confirmaciones.php"; ?>
+
 
 <div class="containerP">
     <h1 class="text-center my-5">
