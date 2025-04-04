@@ -46,6 +46,21 @@ class Usuario
         return $this->usuarios;
     }
 
+    // solo listar los cajeros para la factura 
+    public function listarCajeros()
+{
+    $sql = "SELECT * FROM usuario WHERE id_cargo = 2";
+    $resultado = $this->db->query($sql);
+    
+    $usuarios = [];
+    while ($row = $resultado->fetch_assoc()) {
+        $usuarios[] = $row;
+    }
+    
+    return $usuarios;
+}
+
+
 
     public function obtenerCargos()
 {
@@ -106,6 +121,7 @@ class Usuario
 
         $resultado = $this->db->query($sql);
     }
+    
 
 }
 

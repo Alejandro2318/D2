@@ -27,8 +27,15 @@ class FacturaController {
         $productos = new Producto();
         $cajas = new Caja();
         
+        $estadoCaja = $cajas->getEstado();
+        if ($estadoCaja != 1) {
+            $_SESSION['cajaCerrada'] = true; 
+        } else {
+            $_SESSION['cajaCerrada'] = false;
+        }
+
         $data['titulo'] = "Nueva Factura";
-        $data["usuarios"] = $usuarios->listar();
+        $data["usuarios"] = $usuarios->listarCajeros(); // filtramos los usuarios con id_cargo = 2 que serian cajeros 
         $data["productos"] = $productos->listar();
         $data["cajas"] = $cajas->obtenerCaja(); 
         
@@ -36,22 +43,29 @@ class FacturaController {
     }
 
     // Guardar la información en la DB
-  // Guardar la información en la DB
-public function store()
-{
-    $factura = new Factura();
-    $detalleVenta = new DetalleVenta();
-    $productoModel = new Producto(); // Agregar modelo de productos
-
-    // ✅ Obtener la caja activa
+  
+    public function store()
+    {
+        $factura = new Factura();
+        $detalleVenta = new DetalleVenta();
+        $caja = new Caja();
+        $productoModel = new Producto(); // Agregar modelo de productos
+  
+  
+  // ✅ Obtener la caja activa
     $id_caja = $factura->obtenerCajaActiva();
     if (!$id_caja) {
         die("Error: No hay una caja activa.");
     }
 
-    date_default_timezone_set('America/Bogota');
-    $fecha_factura = date('Y-m-d h:i:s A');
-    $total_factura = $_POST['total_factura'] ?? 0;
+        date_default_timezone_set('America/Bogota');
+        $fecha_factura = date('Y-m-d h:i:s A');
+        $total_factura = $_POST['total_factura'] ?? 0;
+
+        $id_caja = $caja -> obtenerCaja2();
+        // ✅ Insertamos la factura y obtenemos su ID
+        $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
+
 
     // ✅ Insertamos la factura y obtenemos su ID
     $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
@@ -75,9 +89,25 @@ public function store()
         }
     }
 
+
     // ✅ Redirigir a la vista de facturas
     $this->index();
 }
+
+    // Visualizar la información de un registro
+    public function view($id_factura)
+    {
+        $factura = new Factura();
+        $data['titulo'] = "Factura de la venta";
+        $data['factura'] = $factura->getFactura($id_factura);
+
+        $detallesVenta = new DetalleVenta();
+        $data['detallesVenta'] = $detallesVenta->listar($id_factura);
+
+        // Cargar la vista
+        require_once "views/factura/view.php";
+    }
+
 }
 
 ?>
