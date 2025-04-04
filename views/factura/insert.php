@@ -16,7 +16,18 @@ exit;
 
 <div class="containerP">
     <h1 class="text-center my-5"><?= $data['titulo'] ?></h1>
-
+    <div class="iconoP">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" id="Card--Streamline-Ionic-Filled"
+            height="48" width="48">
+            <desc>Card Streamline Icon: https://streamlinehq.com</desc>
+            <path fill="#ffffff"
+                d="M0.48 36.5996c0 1.5594 0.6195 3.055 1.7222 4.1577 1.1027 1.1028 2.5983 1.7222 4.1578 1.7222h35.28c1.5594 0 3.0551 -0.6194 4.1578 -1.7222 1.1027 -1.1027 1.7222 -2.5983 1.7222 -4.1577v-16.17H0.48v16.17Zm6.93 -7.98c0 -0.8354 0.3319 -1.6367 0.9226 -2.2274 0.5908 -0.5908 1.3921 -0.9227 2.2274 -0.9227h5.04c0.8353 0 1.6366 0.3319 2.2274 0.9227 0.5907 0.5907 0.9226 1.392 0.9226 2.2274v2.0999c0 0.8354 -0.3319 1.6367 -0.9226 2.2274 -0.5908 0.5908 -1.3921 0.9226 -2.2274 0.9226h-5.04c-0.8353 0 -1.6366 -0.3318 -2.2274 -0.9226 -0.5907 -0.5907 -0.9226 -1.392 -0.9226 -2.2274v-2.0999Z"
+                stroke-width="1"></path>
+            <path fill="#ffffff"
+                d="M41.64 5.5205H6.36c-1.5595 0 -3.0551 0.6195 -4.1578 1.7222S0.48 9.841 0.48 11.4005v2.7299h47.04v-2.7299c0 -1.5595 -0.6195 -3.0551 -1.7222 -4.1578S43.1994 5.5205 41.64 5.5205Z"
+                stroke-width="1"></path>
+        </svg>
+    </div>
     <form class="formulario mb-5" action="index.php?controlador=factura&accion=store" method="post">
         <div class="formulario__cont2">
             <!-- Cajero -->
@@ -45,7 +56,8 @@ exit;
                 <div class="formulario__cont2 w100">
                     <div class="formulario__cont-sec w100">
                         <label for="total_factura" class="form-label">Total</label>
-                        <input type="number" id="total_factura" name="total_factura" class="form-control" min="0" required readonly>
+                        <input type="number" id="total_factura" name="total_factura" class="form-control" min="0"
+                            required readonly>
                     </div>
                 </div>
             </div>

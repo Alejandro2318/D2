@@ -181,7 +181,6 @@ tbody tr:hover td:first-child:hover {
 
 /* ESTILOS NORVY */
 
-
 .containerP {
     background-color: #21322f;
     border: 3px solid var(--secundario);
@@ -252,7 +251,6 @@ tbody tr:hover td:first-child:hover {
 
 /* Botón */
 .btnform {
-    transition: all 0.3s ease;
     background-color: #4a7368;
     border: none;
     padding: 10px 20px;
@@ -263,9 +261,7 @@ tbody tr:hover td:first-child:hover {
     width: 100%;
     margin-top: 20px;
 }
-.venta:hover{
-    font-size: 18px;
-}
+
 /* Cambio de color al pasar el mouse */
 .btnform:hover {
     background-color: var(--botonVer);
@@ -426,6 +422,7 @@ button:hover {
     justify-content: center;
 }
 
+
 #custom-alert-overlay {
     position: fixed;
     top: 0;
@@ -532,4 +529,5 @@ hr {
 
 .botonCerrar:hover{
     background-color: rgb(145, 7, 7);
+
 }
