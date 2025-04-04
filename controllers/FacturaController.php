@@ -27,6 +27,13 @@ class FacturaController {
         $productos = new Producto();
         $cajas = new Caja();
         
+        $estadoCaja = $cajas->getEstado();
+        if ($estadoCaja != 1) {
+            $_SESSION['cajaCerrada'] = true; 
+        } else {
+            $_SESSION['cajaCerrada'] = false;
+        }
+
         $data['titulo'] = "Nueva Factura";
         $data["usuarios"] = $usuarios->listar();
         $data["productos"] = $productos->listar();
@@ -40,18 +47,13 @@ class FacturaController {
     {
         $factura = new Factura();
         $detalleVenta = new DetalleVenta();
-
-        // ✅ Obtener la caja activa
-        $id_caja = $factura->obtenerCajaActiva();
-
-        if (!$id_caja) {
-            die("Error: No hay una caja activa.");
-        }
+        $caja = new Caja();
 
         date_default_timezone_set('America/Bogota');
         $fecha_factura = date('Y-m-d h:i:s A');
         $total_factura = $_POST['total_factura'] ?? 0;
 
+        $id_caja = $caja -> obtenerCaja2();
         // ✅ Insertamos la factura y obtenemos su ID
         $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
 

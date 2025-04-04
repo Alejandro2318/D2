@@ -37,11 +37,11 @@
 </div>
 
 <!-- Modal para acceso denegado -->
-<div class="modal fade" id="accessDeniedModal" tabindex="-1" aria-labelledby="accessDeniedModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalAbrirCaja" tabindex="-1" aria-labelledby="modalAbrirCaja" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="accessDeniedModalLabel">Acceso Denegado</h5>
+                <h5 class="modal-title" id="modalAbrirCaja">Acceso Denegado</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -53,3 +53,4 @@
         </div>
     </div>
 </div>
+

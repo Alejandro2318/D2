@@ -53,3 +53,42 @@ function updateConfirmModal(tipo) {
     modal.show();
 }
 
+// Botones para abrir y cerrar caja 
+document.addEventListener("DOMContentLoaded", function () {
+    const botones = document.querySelectorAll(".actualizarEstado");
+
+    botones.forEach(boton => {
+        boton.addEventListener("click", function (e) {
+            e.preventDefault();
+            
+            let estado = this.getAttribute("data-estado");
+            
+            // Enviar la solicitud AJAX con fetch
+            fetch("index.php?controlador=caja&accion=actualizarEstado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `estado=${estado}`
+            })
+            .then(response => {
+                // Recargar la página para reflejar el cambio
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                // Recargar la página incluso si hay un error
+                window.location.reload();
+            });
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    let closeAlertBtn = document.getElementById("close");
+    if (closeAlertBtn) {
+        closeAlertBtn.addEventListener("click", function() {
+            window.location.href = "index.php?controlador=caja&accion=index";
+        });
+    }
+});

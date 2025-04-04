@@ -150,10 +150,7 @@
                             Caja
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=index">Listar</a>
-                            </li>
-                            <li><a class="dropdown-item" href="index.php?controlador=usuario&accion=insert">Crear
-                                    nuevo</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=caja&accion=index">Gestionar</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -512,3 +512,22 @@ hr {
     transform: scale(1.1); /* Agranda el botón un 10% */
     background-color: var(--botonVer); /* Mantiene el color original */
 }
+
+/* COLOR CAJA ABIERTA */
+.abierto{
+    color: var(--botonVer);
+}
+/* COLOR CAJA CERRADA */
+.cerrado{
+    color: red;
+}
+
+.botonCerrar {
+    transition: all 0.3s ease;
+    background-color: rgb(145, 7, 7);
+}
+
+.botonCerrar:hover{
+    background-color: rgb(145, 7, 7);
+
+}
