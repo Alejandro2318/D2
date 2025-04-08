@@ -68,7 +68,6 @@ class DetalleVenta
         die("Error al insertar detalle de venta: " . $this->db->error);
     }
 
-
     
 }
 

@@ -114,6 +114,18 @@ class FacturaController {
     $this->index();
 }
 
+        $this->index(); 
+    }
+
+    public function calculate(){
+        $factura = new Factura();
+        $data['titulo'] = "Total ventas diarias";
+        $data['totalVentaDia'] = $factura->obtenerTotalVentaDia();
+        require_once "views/factura/calculate.php";
+    }
+
+
+
 
     // Visualizar la información de un registro
     public function view($id_factura)
@@ -128,6 +140,7 @@ class FacturaController {
         // Cargar la vista
         require_once "views/factura/view.php";
     }
+
 
 }
 

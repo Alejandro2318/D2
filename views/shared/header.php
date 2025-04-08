@@ -125,6 +125,7 @@
                             </li>
                             <li><a class="dropdown-item" href="index.php?controlador=factura&accion=insert">Crear
                                     nuevo</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=factura&accion=calculate">Ventas diarias</a></li>
                         </ul>
                     </li>
                 </ul>
