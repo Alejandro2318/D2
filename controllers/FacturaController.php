@@ -44,37 +44,58 @@ class FacturaController {
 
     // Guardar la información en la DB
   
+
+    // Cambie todo el store, con el fin de hacer las condicionales del stock
     public function store()
-    {
-        $factura = new Factura();
-        $detalleVenta = new DetalleVenta();
-        $caja = new Caja();
-        $productoModel = new Producto(); // Agregar modelo de productos
-  
-  
-  // ✅ Obtener la caja activa
+{
+    $factura = new Factura();
+    $detalleVenta = new DetalleVenta();
+    $caja = new Caja();
+    $productoModel = new Producto();
+
+    // ✅ Obtener la caja activa
     $id_caja = $factura->obtenerCajaActiva();
     if (!$id_caja) {
         die("Error: No hay una caja activa.");
     }
 
-        date_default_timezone_set('America/Bogota');
-        $fecha_factura = date('Y-m-d h:i:s A');
-        $total_factura = $_POST['total_factura'] ?? 0;
+    date_default_timezone_set('America/Bogota');
+    $fecha_factura = date('Y-m-d h:i:s A');
+    $total_factura = $_POST['total_factura'] ?? 0;
 
-        $id_caja = $caja -> obtenerCaja2();
-        // ✅ Insertamos la factura y obtenemos su ID
-        $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
+    $productos = $_POST['productos'] ?? [];
 
+    // ✅ Validar stock antes de insertar la factura
+    foreach ($productos as $producto) {
+        $idProducto = $producto['id_producto'];
+        $cantidadSolicitada = $producto['cantidad'];
 
-    // ✅ Insertamos la factura y obtenemos su ID
+        // Obtener información actual del producto
+        $infoProducto = $productoModel->getProducto($idProducto); // Asegúrate de tener esta función en tu modelo
+        if (!$infoProducto) {
+            die("Error: El producto con ID $idProducto no existe.");
+        }
+
+        $stockDisponible = $infoProducto['cantidad_producto'];
+        if ($cantidadSolicitada > $stockDisponible) {
+            $_SESSION['stockInsuficiente'] = [
+                'producto' => $infoProducto['nombre_producto'],
+                'disponible' => $stockDisponible
+            ];
+            header("Location: index.php?controlador=factura&accion=insert");
+            exit;
+        }
+        
+        
+    }
+
+    // ✅ Insertar factura si todo el stock está bien
     $id_factura = $factura->insert($total_factura, $fecha_factura, $id_caja);
     if (!$id_factura) {
         die("Error: No se pudo crear la factura.");
     }
 
-    // ✅ Insertar los productos en detalle_venta y actualizar stock
-    $productos = $_POST['productos'] ?? [];
+    // ✅ Insertar detalles de venta y actualizar stock
     foreach ($productos as $producto) {
         if (!empty($producto['id_producto']) && !empty($producto['cantidad']) && !empty($producto['subtotal'])) {
             $detalleVenta->insert(
@@ -84,15 +105,15 @@ class FacturaController {
                 $id_factura
             );
 
-            // 🔥 Descontar stock del producto
+            // Descontar el stock
             $productoModel->actualizarStock($producto['id_producto'], $producto['cantidad']);
         }
     }
 
-
-    // ✅ Redirigir a la vista de facturas
+    // Redirigir
     $this->index();
 }
+
 
     // Visualizar la información de un registro
     public function view($id_factura)
