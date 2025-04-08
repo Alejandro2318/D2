@@ -14,6 +14,31 @@ exit;
 }
 ?>
 
+
+
+ <!-- Alerta stock bajo -->
+<?php
+if (isset($_SESSION['stockInsuficiente'])) {
+    $producto = $_SESSION['stockInsuficiente']['producto'];
+    $disponible = $_SESSION['stockInsuficiente']['disponible'];
+
+    echo '
+        <div id="custom-alert-overlay">
+            <div id="custom-alert-box">
+                <h5 class="custom-alert-title">Stock insuficiente</h5>
+                <p>No hay suficiente stock para el producto <strong>' . $producto . '</strong>. Stock disponible: ' . $disponible . '</p>
+                <button class="botonCerrar" id="close-venta">Cerrar</button>
+            </div>
+        </div>
+    ';
+
+    unset($_SESSION['stockInsuficiente']);
+}
+?>
+
+
+
+
 <div class="containerP">
     <h1 class="text-center my-5"><?= $data['titulo'] ?></h1>
     <div class="iconoP">

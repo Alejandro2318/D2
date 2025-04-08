@@ -88,6 +88,22 @@ class Factura
         return $totalVentaDia;
     }
 
+public function getFactura($id_factura)
+{
+    $sql = "SELECT factura.*, caja.*, usuario.*
+            FROM factura
+            JOIN caja ON caja.id_caja = factura.id_caja
+            JOIN usuario ON usuario.id_usuario = caja.id_usuario
+            WHERE factura.id_factura = ?";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bind_param("i", $id_factura);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    
+    return $resultado->fetch_assoc();
+}
+
 
 }
 

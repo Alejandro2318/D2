@@ -46,6 +46,7 @@ class Producto
         return $this->productos;
     }
 
+    // Método para obtener las categorías existentes
     public function obtenerCategorias()
     {
         $categorias = [];
@@ -58,6 +59,7 @@ class Producto
 
         return $categorias;
     }
+
     // Método para insertar un nuevo producto en la base de datos
     public function insert($nombre_producto, $precio_producto, $cantidad_producto, $id_categoria, $es_perecedero, $fecha_caducidad)
     {
@@ -69,14 +71,14 @@ class Producto
         $fecha_caducidad = $es_perecedero ? "'$fecha_caducidad'" : "NULL";
 
         $sql = "INSERT INTO productos (nombre_producto, precio_producto, cantidad_producto, id_categoria, es_perecedero, fecha_caducidad) 
-            VALUES ('$nombre_producto', $precio_producto, $cantidad_producto, $id_categoria, $es_perecedero, $fecha_caducidad)";
+                VALUES ('$nombre_producto', $precio_producto, $cantidad_producto, $id_categoria, $es_perecedero, $fecha_caducidad)";
 
         if (!$this->db->query($sql)) {
             throw new Exception("Error en la inserción: " . $this->db->error);
         }
     }
 
-    //ver el producto
+    // ver el producto
     public function getProducto($id_producto)
     {
         $sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, 
@@ -86,52 +88,65 @@ class Producto
                 FROM productos
                 INNER JOIN categoria ON productos.id_categoria = categoria.id_categoria
                 WHERE id_producto = $id_producto";
-    
+
         $result = $this->db->query($sql); // Ejecutar la consulta
-        
+
         if ($result && $result->num_rows > 0) {
             return $result->fetch_assoc(); // Devolver los datos con "Sí" o "No"
         } else {
             return null; // Retornar null si no encuentra resultados
         }
     }
-    
 
-
-
-
-
-
-
-    //eliminar el producto
+    // eliminar el producto
     public function delete($id_producto)
     {
         $sql = "DELETE FROM productos
-            WHERE id_producto = $id_producto";
+                WHERE id_producto = $id_producto";
 
         $resultado = $this->db->query($sql);
     }
-    public function obtenerProducto($id_producto) {
+
+    // obtener el producto (sin el JOIN, para edición rápida)
+    public function obtenerProducto($id_producto)
+    {
         $sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, cantidad_producto, es_perecedero, fecha_caducidad 
                 FROM productos 
                 WHERE id_producto = $id_producto";
-        
-        $resultado = $this->db->query($sql);
-            $row = $resultado->fetch_assoc();
-            return $row;
-        }
-        public function update($id_producto, $nombre_producto, $precio_producto, $cantidad_producto, $fecha_caducidad, $es_perecedero, $id_categoria)
-    {
-        $fecha_caducidad = $es_perecedero ? "'$fecha_caducidad'" : "NULL";
-        $sql = "UPDATE productos 
-            SET nombre_producto = '$nombre_producto', 
-                precio_producto = $precio_producto, 
-                cantidad_producto = $cantidad_producto, 
-                fecha_caducidad = $fecha_caducidad, 
-                es_perecedero = $es_perecedero, 
-                id_categoria = $id_categoria 
-            WHERE id_producto = $id_producto";
 
         $resultado = $this->db->query($sql);
+        $row = $resultado->fetch_assoc();
+        return $row;
+    }
+
+    // método para actualizar un producto
+    public function update($id_producto, $nombre_producto, $precio_producto, $cantidad_producto, $fecha_caducidad, $es_perecedero, $id_categoria)
+    {
+        $fecha_caducidad = $es_perecedero ? "'$fecha_caducidad'" : "NULL";
+
+        $sql = "UPDATE productos 
+                SET nombre_producto = '$nombre_producto', 
+                    precio_producto = $precio_producto, 
+                    cantidad_producto = $cantidad_producto, 
+                    fecha_caducidad = $fecha_caducidad, 
+                    es_perecedero = $es_perecedero, 
+                    id_categoria = $id_categoria 
+                WHERE id_producto = $id_producto";
+
+        $resultado = $this->db->query($sql);
+    }
+
+    // Se agrega esta funcion para actualizar el stock  ATT:ALEJO
+    public function actualizarStock($id_producto, $cantidad_vendida)
+    {
+        $sql = "UPDATE productos 
+                SET cantidad_producto = cantidad_producto - $cantidad_vendida 
+                WHERE id_producto = $id_producto";
+
+        $resultado = $this->db->query($sql);
+
+        if (!$resultado) {
+            throw new Exception("Error al actualizar el stock: " . $this->db->error);
+        }
     }
 }
