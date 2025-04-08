@@ -114,9 +114,6 @@ class FacturaController {
     $this->index();
 }
 
-        $this->index(); 
-    }
-
     public function calculate(){
         $factura = new Factura();
         $data['titulo'] = "Total ventas diarias";
