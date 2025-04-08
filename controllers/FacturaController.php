@@ -75,9 +75,18 @@ class FacturaController {
             }
         }
 
-        // ✅ Redirigir a la vista de facturas
-        $this->index(); // 🔥 Redirección usando la función directamente
+        $this->index(); 
     }
+
+    public function calculate(){
+        $factura = new Factura();
+        $data['titulo'] = "Total ventas diarias";
+        $data['totalVentaDia'] = $factura->obtenerTotalVentaDia();
+        require_once "views/factura/calculate.php";
+    }
+
+
+
 }
 
 ?>

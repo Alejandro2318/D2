@@ -1,6 +1,6 @@
 <?php
 
-class Factura 
+class Factura
 {
     // Atributos
     private $db;
@@ -23,8 +23,7 @@ class Factura
         $resultado = $this->db->query($sql);
 
         // Si falla la consulta
-        if(!$resultado)
-        {
+        if (!$resultado) {
             // ¡Oh, no! La consulta falló :(
             echo "Lo sentimos, este sitio está experimentando problemas.";
 
@@ -37,8 +36,7 @@ class Factura
         }
 
         // Leer cada fila del resultado
-        while($row = $resultado->fetch_assoc())
-        {
+        while ($row = $resultado->fetch_assoc()) {
             // Agregar la fila al final del arreglo productos
             $this->facturas[] = $row;
         }
@@ -46,41 +44,51 @@ class Factura
         return $this->facturas;
     }
 
-    public function insert($total_factura, $fecha_factura, $id_caja) 
-{
-    $sql = "INSERT INTO factura (total_factura, fecha_factura, id_caja) 
+    public function insert($total_factura, $fecha_factura, $id_caja)
+    {
+        $sql = "INSERT INTO factura (total_factura, fecha_factura, id_caja) 
             VALUES (?, ?, ?)";
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->bind_param("dsi", $total_factura, $fecha_factura, $id_caja);
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("dsi", $total_factura, $fecha_factura, $id_caja);
 
-    if ($stmt->execute()) {
-        return $this->db->insert_id; // Retorna el ID de la factura insertada
-    } else {
-        die("Error al insertar la factura: " . $stmt->error);
+        if ($stmt->execute()) {
+            return $this->db->insert_id; // Retorna el ID de la factura insertada
+        } else {
+            die("Error al insertar la factura: " . $stmt->error);
+        }
     }
-}
-public function obtenerCajaActiva()
-{
-    $sql = "SELECT id_caja FROM caja WHERE estado_caja = 1 LIMIT 1"; // Busca la caja abierta
+    public function obtenerCajaActiva()
+    {
+        $sql = "SELECT id_caja FROM caja WHERE estado_caja = 1 LIMIT 1"; // Busca la caja abierta
 
-    $resultado = $this->db->query($sql);
+        $resultado = $this->db->query($sql);
 
-    if ($fila = $resultado->fetch_assoc()) {
-        return $fila['id_caja'];
+        if ($fila = $resultado->fetch_assoc()) {
+            return $fila['id_caja'];
+        }
+
+        return null; // No hay caja abierta
     }
 
-    return null; // No hay caja abierta
-}
+    public function obtenerTotalVentaDia()
+    {
+        $totalVentaDia = [];
+        $sql = "SELECT DATE(fecha_factura) AS fecha, SUM(total_factura) AS total_ventas
+    FROM factura
+    GROUP BY DATE(fecha_factura)
+    ORDER BY fecha DESC";
+
+        $resultado = $this->db->query($sql);
+
+        while ($row = $resultado->fetch_assoc()) {
+            $totalVentaDia[] = $row;
+        }
+
+        return $totalVentaDia;
+    }
 
 
-
-
-    
-
-    
-
-    
 }
 
 ?>
