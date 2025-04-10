@@ -93,24 +93,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    let closeAlertBtn = document.getElementById("close-productos");
-    
-    if (closeAlertBtn) {
-        closeAlertBtn.addEventListener("click", function() {
-            // Limpiar la alerta de la sesión
-            // Enviar solicitud para limpiar la alerta desde el servidor
-            fetch('index.php?controlador=producto&accion=limpiarAlerta', {
-                method: 'GET'
-            }).then(function(response) {
-                // Al hacer clic en el botón de cerrar, ocultamos el modal
-                let alertOverlay = document.getElementById('custom-alert-overlay');
-                if (alertOverlay) {
-                    alertOverlay.style.display = 'none';
-                }
-            }).catch(function(error) {
-                console.error('Error al limpiar la alerta:', error);
+document.addEventListener("DOMContentLoaded", function () {
+    if (!Array.isArray(alertasStock) || alertasStock.length === 0) return;
+
+    let index = 0;
+
+    function mostrarSiguienteAlerta() {
+        if (index < alertasStock.length) {
+            const producto = alertasStock[index];
+
+            const overlay = document.createElement("div");
+            overlay.id = "custom-alert-overlay";
+            overlay.innerHTML = `
+                <div id="custom-alert-box">
+                    <h5 class="custom-alert-title">¡Stock bajo!</h5>
+                    <p>El producto ${producto.nombre} tiene solo ${producto.cantidad} unidades.</p>
+                    <button class="botonCerrar">Cerrar</button>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const botonCerrar = overlay.querySelector(".botonCerrar");
+            botonCerrar.addEventListener("click", () => {
+                document.body.removeChild(overlay);
+                index++;
+                setTimeout(mostrarSiguienteAlerta, 300);
             });
-        });
+        }
     }
+
+    mostrarSiguienteAlerta();
 });
