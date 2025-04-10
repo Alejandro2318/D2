@@ -93,13 +93,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-  // Agregue esta funcion para el boton de la factura para que me mantenga en el insert
-
 document.addEventListener("DOMContentLoaded", function() {
-    let closeAlertBtn = document.getElementById("close-venta");
+    let closeAlertBtn = document.getElementById("close-productos");
+    
     if (closeAlertBtn) {
         closeAlertBtn.addEventListener("click", function() {
-            window.location.href = "index.php?controlador=factura&accion=insert";
+            // Limpiar la alerta de la sesión
+            // Enviar solicitud para limpiar la alerta desde el servidor
+            fetch('index.php?controlador=producto&accion=limpiarAlerta', {
+                method: 'GET'
+            }).then(function(response) {
+                // Al hacer clic en el botón de cerrar, ocultamos el modal
+                let alertOverlay = document.getElementById('custom-alert-overlay');
+                if (alertOverlay) {
+                    alertOverlay.style.display = 'none';
+                }
+            }).catch(function(error) {
+                console.error('Error al limpiar la alerta:', error);
+            });
         });
     }
 });
