@@ -18,7 +18,8 @@
                             class="btn btn-info">Ver</a>
                         <?php if (isset($_SESSION['id_cargo']) && $_SESSION['id_cargo'] == 1) { ?>
                             <a href="index.php?controlador=factura&accion=delete&id=<?= $item['id_factura'] ?>"
-                                class="btn btn-danger">Eliminar</a>
+                            class="btn btn-danger"    
+                            onclick="event.preventDefault(); confirmarEliminacion(this.href, 'factura')">Eliminar</a>
                         <?php } ?>
                     </td>
                 </tr>

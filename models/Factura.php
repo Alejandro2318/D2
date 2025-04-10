@@ -105,6 +105,16 @@ public function getFactura($id_factura)
 }
 
 
+//eliminar la factura metodo viviam
+public function delete($id_factura)
+{
+    $sql = "DELETE FROM factura
+        WHERE id_factura = $id_factura";
+
+    $resultado = $this->db->query($sql);
+}
+
+
 }
 
 ?>
