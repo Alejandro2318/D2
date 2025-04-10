@@ -139,6 +139,15 @@ class FacturaController {
     }
 
 
+    //eliminar factura  rama viviam
+ public function delete($id_factura)
+ {
+     $factura = new Factura();
+     $factura->delete($id_factura);
+     $this->index();
+ }
+
+
 }
 
 ?>
