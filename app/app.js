@@ -93,13 +93,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-  // Agregue esta funcion para el boton de la factura para que me mantenga en el insert
+document.addEventListener("DOMContentLoaded", function () {
+    if (!Array.isArray(alertasStock) || alertasStock.length === 0) return;
 
-document.addEventListener("DOMContentLoaded", function() {
-    let closeAlertBtn = document.getElementById("close-venta");
-    if (closeAlertBtn) {
-        closeAlertBtn.addEventListener("click", function() {
-            window.location.href = "index.php?controlador=factura&accion=insert";
-        });
+    let index = 0;
+
+    function mostrarSiguienteAlerta() {
+        if (index < alertasStock.length) {
+            const producto = alertasStock[index];
+
+            const overlay = document.createElement("div");
+            overlay.id = "custom-alert-overlay";
+            overlay.innerHTML = `
+                <div id="custom-alert-box">
+                    <h5 class="custom-alert-title">¡Stock bajo!</h5>
+                    <p>El producto ${producto.nombre} tiene solo ${producto.cantidad} unidades.</p>
+                    <button class="botonCerrar">Cerrar</button>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const botonCerrar = overlay.querySelector(".botonCerrar");
+            botonCerrar.addEventListener("click", () => {
+                document.body.removeChild(overlay);
+                index++;
+                setTimeout(mostrarSiguienteAlerta, 300);
+            });
+        }
     }
+
+    mostrarSiguienteAlerta();
 });
