@@ -172,3 +172,37 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarSiguienteCaducidad();
 });
 
+// alerta productos vencidos *****************
+document.addEventListener("DOMContentLoaded", function () {
+    if (!Array.isArray(alertasVencidos) || alertasVencidos.length === 0) return;
+
+    let indexVenc = 0;
+
+    function mostrarSiguienteVencido() {
+        if (indexVenc < alertasVencidos.length) {
+            const producto = alertasVencidos[indexVenc];
+
+            const overlay = document.createElement("div");
+            overlay.id = "custom-alert-overlay";
+            overlay.innerHTML = `
+                <div id="custom-alert-box">
+                    <h5 class="custom-alert-title">⛔ ¡Producto vencido!</h5>
+                    <p>El producto <strong>${producto.nombre}</strong> venció el <strong>${producto.fecha.substring(0, 10)}</strong>.</p>
+                    <button class="botonCerrar">Cerrar</button>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const botonCerrar = overlay.querySelector(".botonCerrar");
+            botonCerrar.addEventListener("click", () => {
+                document.body.removeChild(overlay);
+                indexVenc++;
+                setTimeout(mostrarSiguienteVencido, 300);
+            });
+        }
+    }
+
+    mostrarSiguienteVencido();
+});
+
