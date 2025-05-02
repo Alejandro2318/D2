@@ -11,11 +11,33 @@ foreach ($data['productos'] as $item) {
         ];
     }
 }
+// ++++++++++alerta caducidad
+$alertasCaducidad = [];
+
+foreach ($data['productos'] as $item) {
+    if (!empty($item['fecha_caducidad'])) {
+        $fecha_actual = date("Y-m-d");
+        $fecha_limite = date("Y-m-d", strtotime($fecha_actual . ' + 10 days'));
+
+        if ($item['fecha_caducidad'] <= $fecha_limite) {
+            $alertasCaducidad[] = [
+                'nombre' => $item['nombre_producto'],
+                'fecha' => $item['fecha_caducidad']
+            ];
+        }
+    }
+}
+
 ?>
 
 <script>
     const alertasStock = <?= json_encode($alertasStock); ?>;
 </script>
+<!-- alerta caducidad -->
+<script>
+    const alertasCaducidad = <?= json_encode($alertasCaducidad); ?>;
+</script>
+
 <div class="container cuerpo">
 
     <h1 class="text-center my-5"><?= $data['titulo'] ?></h1>
