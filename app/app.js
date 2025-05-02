@@ -125,3 +125,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     mostrarSiguienteAlerta();
 });
+
+// alerta caducidad*****************
+document.addEventListener("DOMContentLoaded", function () {
+    if (!Array.isArray(alertasCaducidad) || alertasCaducidad.length === 0) return;
+
+    let indexCad = 0;
+
+    function mostrarSiguienteCaducidad() {
+        if (indexCad < alertasCaducidad.length) {
+            const producto = alertasCaducidad[indexCad];
+
+            const overlay = document.createElement("div");
+            overlay.id = "custom-alert-overlay";
+            overlay.innerHTML = `
+                <div id="custom-alert-box">
+                    <h5 class="custom-alert-title">⚠️ ¡Producto por caducar!</h5>
+                    <p>El producto <strong>${producto.nombre}</strong> vence el <strong>${producto.fecha.substring(0, 10)}</strong>.</p>
+                    <button class="botonCerrar">Cerrar</button>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            const botonCerrar = overlay.querySelector(".botonCerrar");
+            botonCerrar.addEventListener("click", () => {
+                document.body.removeChild(overlay);
+                indexCad++;
+                setTimeout(mostrarSiguienteCaducidad, 300);
+            });
+        }
+    }
+
+    mostrarSiguienteCaducidad();
+});
+
