@@ -95,6 +95,7 @@
                             <li><a class="dropdown-item" href="index.php?controlador=producto&accion=insert">Crear
 
                                     nuevo Producto</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=replenish">Productos a reabastecer</a></li>
                         </ul>
                     </li>
                 </ul>
