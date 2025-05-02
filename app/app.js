@@ -126,6 +126,18 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarSiguienteAlerta();
 });
 
+// Agregue esta funcion para el boton de la factura para que me mantenga en el insert
+
+document.addEventListener("DOMContentLoaded", function() {
+    let closeAlertBtn = document.getElementById("close-venta");
+    if (closeAlertBtn) {
+        closeAlertBtn.addEventListener("click", function() {
+            window.location.href = "index.php?controlador=factura&accion=insert";
+        });
+    }
+});
+
+
 // alerta caducidad*****************
 document.addEventListener("DOMContentLoaded", function () {
     if (!Array.isArray(alertasCaducidad) || alertasCaducidad.length === 0) return;
