@@ -149,4 +149,20 @@ class Producto
             throw new Exception("Error al actualizar el stock: " . $this->db->error);
         }
     }
+
+    // Obtener los productos que esten bajos en stock -10
+    public function obtenerProductosBajosStock()
+    {
+        $productosBajosStock = [];
+        $sql = "SELECT nombre_producto, cantidad_producto
+        FROM productos 
+        WHERE cantidad_producto <= 10";
+        $resultado = $this->db->query($sql);
+
+        while ($row = $resultado->fetch_assoc()) {
+            $productosBajosStock[] = $row;
+        }
+        return $productosBajosStock;
+    }
 }
+
