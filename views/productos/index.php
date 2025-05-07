@@ -10,33 +10,45 @@ foreach ($data['productos'] as $item) {
             'cantidad' => $item['cantidad_producto']
         ];
     }
+
+    
 }
-// ++++++++++alerta caducidad
+
 $alertasCaducidad = [];
+$alertasVencidos = [];
+
+$fecha_actual = date("Y-m-d");
+$fecha_limite = date("Y-m-d", strtotime($fecha_actual . ' + 10 days'));
 
 foreach ($data['productos'] as $item) {
     if (!empty($item['fecha_caducidad'])) {
-        $fecha_actual = date("Y-m-d");
-        $fecha_limite = date("Y-m-d", strtotime($fecha_actual . ' + 10 days'));
+        $fecha_cad = $item['fecha_caducidad'];
 
-        if ($item['fecha_caducidad'] <= $fecha_limite) {
+        if ($fecha_cad < $fecha_actual) {
+            // Producto vencido
+            $alertasVencidos[] = [
+                'nombre' => $item['nombre_producto'],
+                'fecha' => $fecha_cad
+            ];
+        } elseif ($fecha_cad <= $fecha_limite) {
+            // Producto por caducar (NO vencido)
             $alertasCaducidad[] = [
                 'nombre' => $item['nombre_producto'],
-                'fecha' => $item['fecha_caducidad']
+                'fecha' => $fecha_cad
             ];
         }
     }
 }
-
 ?>
 
 <script>
     const alertasStock = <?= json_encode($alertasStock); ?>;
-</script>
-<!-- alerta caducidad -->
-<script>
+    const alertasVencidos = <?= json_encode($alertasVencidos); ?>;
     const alertasCaducidad = <?= json_encode($alertasCaducidad); ?>;
 </script>
+
+
+
 
 <div class="container cuerpo">
 
