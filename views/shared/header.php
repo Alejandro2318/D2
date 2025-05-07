@@ -19,6 +19,8 @@
 
     <!-- Fontawesome Link for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- SELECT2 -->
+    <link rel="stylesheet" href="./vendor/select2/select2.min.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
