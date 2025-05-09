@@ -95,6 +95,9 @@
                             <li><a class="dropdown-item" href="index.php?controlador=producto&accion=insert">Crear
 
                                     nuevo Producto</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=masVendidos">Productos vendidos</a></li>
+
+                         
                         </ul>
                     </li>
                 </ul>

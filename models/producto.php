@@ -149,4 +149,20 @@ class Producto
             throw new Exception("Error al actualizar el stock: " . $this->db->error);
         }
     }
+
+    // *********Cantidad total vendida por producto
+
+    public function obtenerProductosMasVendidos()
+{
+    $sql = "SELECT productos.nombre_producto, SUM(detalle_venta.cantidad_producto_venta) AS total_vendidos
+            FROM detalle_venta
+            JOIN productos ON detalle_venta.id_producto = productos.id_producto
+            GROUP BY productos.id_producto
+            ORDER BY total_vendidos DESC";
+
+    $resultado = $this->db->query($sql);
+    return $resultado;
+}
+
+
 }

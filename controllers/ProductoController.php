@@ -110,7 +110,25 @@ class ProductoController
         // Redirige al listado de productos
         $this->index();
     }
+
+    // *********Cantidad total vendida por producto
+    public function masVendidos()
+{
+    include_once("models/producto.php");
+    $producto = new Producto();
+    $productosMasVendidos = $producto->obtenerProductosMasVendidos();
+
+    $data['titulo'] = "Cantidad total vendida por producto";
+    $data['productosMasVendidos'] = $productosMasVendidos;
+
+    require_once("views/productos/masVendidos.php");
+}
+
+
     
 }
+
+
+
 
 ?>
