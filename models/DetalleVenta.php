@@ -68,8 +68,34 @@ class DetalleVenta
         die("Error al insertar detalle de venta: " . $this->db->error);
     }
 
-    
 }
+
+public function listarDetalleVenta($id_factura)
+{
+    $sql = "SELECT detalle_venta.id_detalle_venta, detalle_venta.cantidad_producto_venta, detalle_venta.subtotal, detalle_venta.id_producto, detalle_venta.id_factura
+            FROM detalle_venta
+            WHERE detalle_venta.id_factura = ?";
+
+    $stmt = $this->db->prepare($sql);
+
+    if ($stmt === false) {
+        die('Error en la preparación de la consulta: ' . $this->db->error);
+    }
+
+    $stmt->bind_param("i", $id_factura);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    // Leer cada fila del resultado
+    $detallesVenta = [];
+    while ($row = $resultado->fetch_assoc()) {
+        $detallesVenta[] = $row;
+    }
+
+    return $detallesVenta;
+}
+
+
 
 }
 

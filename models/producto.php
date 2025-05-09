@@ -78,7 +78,7 @@ class Producto
         }
     }
 
-    // ver el producto
+    // ver el productoc
     public function getProducto($id_producto)
     {
         $sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, 

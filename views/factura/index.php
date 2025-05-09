@@ -16,10 +16,12 @@
                     <td>
                         <a href="index.php?controlador=factura&accion=view&id=<?= $item['id_factura'] ?>"
                             class="btn btn-info">Ver</a>
+                        <a href="index.php?controlador=factura&accion=descargarFactura&id_factura=<?= $item['id_factura'] ?>&descargar=1"
+                            class="btn btn-warning" target="_blank">Imprimir</a>
                         <?php if (isset($_SESSION['id_cargo']) && $_SESSION['id_cargo'] == 1) { ?>
                             <a href="index.php?controlador=factura&accion=delete&id=<?= $item['id_factura'] ?>"
-                            class="btn btn-danger"    
-                            onclick="event.preventDefault(); confirmarEliminacion(this.href, 'factura')">Eliminar</a>
+                                class="btn btn-danger"
+                                onclick="event.preventDefault(); confirmarEliminacion(this.href, 'factura')">Eliminar</a>
                         <?php } ?>
                     </td>
                 </tr>
