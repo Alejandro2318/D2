@@ -150,6 +150,23 @@ class Producto
         }
     }
 
+
+    // *********Cantidad total vendida por producto
+
+    public function obtenerProductosMasVendidos()
+{
+    $sql = "SELECT productos.nombre_producto, SUM(detalle_venta.cantidad_producto_venta) AS total_vendidos
+            FROM detalle_venta
+            JOIN productos ON detalle_venta.id_producto = productos.id_producto
+            GROUP BY productos.id_producto
+            ORDER BY total_vendidos DESC";
+
+    $resultado = $this->db->query($sql);
+    return $resultado;
+}
+
+
+
     // Obtener los productos que esten bajos en stock -10
     public function obtenerProductosBajosStock()
     {
@@ -164,5 +181,6 @@ class Producto
         }
         return $productosBajosStock;
     }
+
 }
 

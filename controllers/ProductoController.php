@@ -111,6 +111,29 @@ class ProductoController
         $this->index();
     }
 
+
+    // *********Cantidad total vendida por producto
+    public function masVendidos()
+{
+    include_once("models/producto.php");
+    $producto = new Producto();
+    $productosMasVendidos = $producto->obtenerProductosMasVendidos();
+
+    $data['titulo'] = "Cantidad total vendida por producto";
+    $data['productosMasVendidos'] = $productosMasVendidos;
+
+    require_once("views/productos/masVendidos.php");
+}
+
+
+    
+}
+
+
+
+
+?>
+
     // Cargar vista a la lista de productos que se deben reabastecer 
 public function replenish()
 {
@@ -123,5 +146,6 @@ public function replenish()
 }
     
 }
+
 
 
