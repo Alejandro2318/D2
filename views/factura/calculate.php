@@ -18,5 +18,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <a href="index.php?controlador=factura&accion=calculate&pdf=1" class="btn btn-danger mb-3 imprimir" target="_blank">
+    Imprimir 
+</a>
+
 </div>
 <?php require "views/shared/footer.php" ?>

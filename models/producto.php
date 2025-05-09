@@ -78,7 +78,7 @@ class Producto
         }
     }
 
-    // ver el producto
+    // ver el productoc
     public function getProducto($id_producto)
     {
         $sql = "SELECT productos.id_producto, productos.nombre_producto, productos.precio_producto, 
@@ -150,6 +150,7 @@ class Producto
         }
     }
 
+
     // *********Cantidad total vendida por producto
 
     public function obtenerProductosMasVendidos()
@@ -165,4 +166,21 @@ class Producto
 }
 
 
+
+    // Obtener los productos que esten bajos en stock -10
+    public function obtenerProductosBajosStock()
+    {
+        $productosBajosStock = [];
+        $sql = "SELECT nombre_producto, cantidad_producto
+        FROM productos 
+        WHERE cantidad_producto <= 10";
+        $resultado = $this->db->query($sql);
+
+        while ($row = $resultado->fetch_assoc()) {
+            $productosBajosStock[] = $row;
+        }
+        return $productosBajosStock;
+    }
+
 }
+

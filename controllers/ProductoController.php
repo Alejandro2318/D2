@@ -111,6 +111,7 @@ class ProductoController
         $this->index();
     }
 
+
     // *********Cantidad total vendida por producto
     public function masVendidos()
 {
@@ -132,3 +133,19 @@ class ProductoController
 
 
 ?>
+
+    // Cargar vista a la lista de productos que se deben reabastecer 
+public function replenish()
+{
+    // Se crea una instancia de la clase Categoria para obtener las categorías disponibles
+    $productos = new Producto();
+    $data['titulo'] = "Lista de productos a reabastecer"; // Título de la vista
+    $data['productosBajoStock'] = $productos -> obtenerProductosBajosStock();
+    // Se carga la vista donde se mostrará el formulario para crear un producto
+    require_once "views/productos/replenish.php";
+}
+    
+}
+
+
+
