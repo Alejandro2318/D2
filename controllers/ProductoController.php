@@ -126,13 +126,6 @@ class ProductoController
 }
 
 
-    
-}
-
-
-
-
-?>
 
     // Cargar vista a la lista de productos que se deben reabastecer 
 public function replenish()
@@ -145,7 +138,15 @@ public function replenish()
     require_once "views/productos/replenish.php";
 }
     
+
+    
 }
+
+
+
+
+?>
+
 
 
 
