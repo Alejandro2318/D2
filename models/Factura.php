@@ -71,22 +71,38 @@ class Factura
         return null; // No hay caja abierta
     }
 
-    public function obtenerTotalVentaDia()
-    {
-        $totalVentaDia = [];
-        $sql = "SELECT DATE(fecha_factura) AS fecha, SUM(total_factura) AS total_ventas
-    FROM factura
-    GROUP BY DATE(fecha_factura)
-    ORDER BY fecha DESC";
+   public function obtenerTotalVentaDia($fechaInicio = null, $fechaFin = null)
+{
+    $totalVentaDia = [];
 
-        $resultado = $this->db->query($sql);
-
-        while ($row = $resultado->fetch_assoc()) {
-            $totalVentaDia[] = $row;
-        }
-
-        return $totalVentaDia;
+    $condiciones = [];
+    if ($fechaInicio) {
+        $condiciones[] = "DATE(fecha_factura) >= '" . $this->db->real_escape_string($fechaInicio) . "'";
     }
+    if ($fechaFin) {
+        $condiciones[] = "DATE(fecha_factura) <= '" . $this->db->real_escape_string($fechaFin) . "'";
+    }
+
+    $where = '';
+    if (!empty($condiciones)) {
+        $where = 'WHERE ' . implode(' AND ', $condiciones);
+    }
+
+    $sql = "SELECT DATE(fecha_factura) AS fecha, SUM(total_factura) AS total_ventas
+            FROM factura
+            $where
+            GROUP BY DATE(fecha_factura)
+            ORDER BY fecha DESC";
+
+    $resultado = $this->db->query($sql);
+
+    while ($row = $resultado->fetch_assoc()) {
+        $totalVentaDia[] = $row;
+    }
+
+    return $totalVentaDia;
+}
+
 
 public function getFactura($id_factura)
 {
