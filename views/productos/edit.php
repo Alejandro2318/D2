@@ -46,12 +46,12 @@
                     <label class="form-label">¿Es perecedero?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="es_perecedero" id="es_perecedero-yes"
-                            value="1" onchange="toggleExpirationDate()">
+                            value="1" checked onchange="toggleExpirationDate()">
                         <label class="form-check-label" for="es_perecedero-yes">Sí</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="es_perecedero" id="es_perecedero-no"
-                            value="0" checked onchange="toggleExpirationDate()">
+                            value="0" onchange="toggleExpirationDate()">
                         <label class="form-check-label" for="es_perecedero-no">No</label>
                     </div>
                 </div>

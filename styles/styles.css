@@ -538,3 +538,11 @@ hr {
 .imprimir{
     margin-left: 40%;
 }
+
+label.fechaRango {
+  color: white !important;
+  font-size: 30px !important;
+  display: block;
+  text-align: center !important;
+}
+

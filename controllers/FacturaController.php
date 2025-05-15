@@ -118,89 +118,69 @@ class FacturaController
         $this->index();
     }
 
-    public function calculate()
-    {
-        $factura = new Factura();
-        $data['titulo'] = "Total ventas diarias";
-        $data['totalVentaDia'] = $factura->obtenerTotalVentaDia();
-        
-        // Si el usuario pidió el PDF
-        if (isset($_GET['pdf']) && $_GET['pdf'] == 1) {
-            require_once 'vendor/autoload.php';
-            
-            // Generar contenido HTML para el PDF directamente en el controlador
-            ob_start();
-            
-            ?>
-            <html>
-                <head>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            font-size: 12px;
-                        }
-                        table {
-                            width: 100%;
-                            border-collapse: collapse;
-                        }
-                        th, td {
-                            padding: 8px;
-                            border: 1px solid #ddd;
-                            text-align: left;
-                        }
-                        th {
-                            background-color: #f2f2f2;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1><?= $data['titulo'] ?></h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Total Venta</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($data['totalVentaDia'] as $venta): ?>
-                                <tr>
-                                    <td><?= $venta['fecha'] ?></td>
-                                    <td>$<?= number_format($venta['total_ventas'], 2) ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </body>
-            </html>
-            <?php
-    
-            // Capturar el contenido HTML generado
-            $html = ob_get_clean();
-            
-            // Crear instancia de Dompdf
-            $options = new Options();
-            $options->set('defaultFont', 'Arial');
-            $dompdf = new Dompdf($options);
-            
-            // Cargar el contenido HTML en Dompdf
-            $dompdf->loadHtml($html);
-            
-            // Configurar tamaño de papel
-            $dompdf->setPaper('A4', 'portrait');
-            
-            // Renderizar el PDF (esto puede tomar un tiempo)
-            $dompdf->render();
-            
-            // Forzar la descarga del PDF en lugar de mostrarlo en pantalla
-            $dompdf->stream("reporte_ventas_diarias.pdf", ["Attachment" => true]); // Cambia a true para descargar
-            
-            return; // Importante para evitar que se cargue el contenido de la vista calculate.php después
-        }
-    
-        // Si no pidió PDF, muestra la vista HTML normal
-        require_once "views/factura/calculate.php";
+   public function calculate()
+{
+    $factura = new Factura();
+    $data['titulo'] = "Total ventas diarias";
+
+    // Verifica si vienen fechas por GET
+    $fechaInicio = $_GET['fecha_inicio'] ?? null;
+    $fechaFin = $_GET['fecha_fin'] ?? null;
+
+    // Llama al modelo con o sin filtros
+    $data['totalVentaDia'] = $factura->obtenerTotalVentaDia($fechaInicio, $fechaFin);
+
+    // Si se pidió PDF
+    if (isset($_GET['pdf']) && $_GET['pdf'] == 1) {
+        require_once 'vendor/autoload.php';
+        ob_start(); // Captura la salida HTML
+        ?>
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; font-size: 12px; }
+                table { width: 100%; border-collapse: collapse; }
+                th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+                th { background-color: #f2f2f2; }
+            </style>
+        </head>
+        <body>
+            <h1><?= $data['titulo'] ?></h1>
+            <p><strong>Desde:</strong> <?= $fechaInicio ?> | <strong>Hasta:</strong> <?= $fechaFin ?></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Total Venta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($data['totalVentaDia'] as $venta): ?>
+                        <tr>
+                            <td><?= $venta['fecha'] ?></td>
+                            <td>$<?= number_format($venta['total_ventas'], 2) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </body>
+        </html>
+        <?php
+        $html = ob_get_clean();
+
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf;
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("reporte_ventas_diarias.pdf", ["Attachment" => true]);
+        return;
     }
+
+    require_once "views/factura/calculate.php";
+}
+
     
 
 

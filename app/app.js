@@ -206,3 +206,22 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarSiguienteVencido();
 });
 
+// FILTRADO AUTOMATICO DE FECHAS
+
+document.addEventListener('DOMContentLoaded', function () {
+    const fechaInicio = document.getElementById('fecha_inicio');
+    const fechaFin = document.getElementById('fecha_fin');
+
+    if (fechaInicio && fechaFin) {
+        fechaInicio.addEventListener('change', function () {
+            console.log('Fecha inicio cambiada, enviando formulario...');
+            document.getElementById('filtro-fechas').submit();
+        });
+
+        fechaFin.addEventListener('change', function () {
+            console.log('Fecha fin cambiada, enviando formulario...');
+            document.getElementById('filtro-fechas').submit();
+        });
+    }
+});
+

@@ -11,7 +11,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     <link rel="stylesheet" href="styles/styles.css">
-    <script src="app/app.js"></script>
+   
 
     <title>
         <?= $data['titulo'] ?>
@@ -98,11 +98,14 @@
 
                                     nuevo Producto</a></li>
 
-                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=masVendidos">Productos vendidos</a></li>
+                            <li><a class="dropdown-item"
+                                    href="index.php?controlador=producto&accion=masVendidos">Productos vendidos</a></li>
 
-                         
 
-                            <li><a class="dropdown-item" href="index.php?controlador=producto&accion=replenish">Productos a reabastecer</a></li>
+
+                            <li><a class="dropdown-item"
+                                    href="index.php?controlador=producto&accion=replenish">Productos a reabastecer</a>
+                            </li>
 
                         </ul>
                     </li>
@@ -134,7 +137,8 @@
                             </li>
                             <li><a class="dropdown-item" href="index.php?controlador=factura&accion=insert">Crear
                                     nuevo</a></li>
-                            <li><a class="dropdown-item" href="index.php?controlador=factura&accion=calculate">Ventas diarias</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=factura&accion=calculate">Ventas
+                                    diarias</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -160,7 +164,8 @@
                             Caja
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="index.php?controlador=caja&accion=index">Gestionar</a></li>
+                            <li><a class="dropdown-item" href="index.php?controlador=caja&accion=index">Gestionar</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -175,3 +180,6 @@
             </div>
         </div>
     </nav>
+s
+<script src="app/app.js"></script>
+</body>
