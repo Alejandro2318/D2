@@ -107,6 +107,12 @@
                                     href="index.php?controlador=producto&accion=replenish">Productos a reabastecer</a>
                             </li>
 
+                            <!-- AQUI AGREGO LA VISTA PARA EL DESPLEGABLE Y AÑADO EL CONTROLADOR -->
+
+                            <li><a class="dropdown-item"
+                                    href="index.php?controlador=producto&accion=descargarinventario">Descargar Inventario</a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>

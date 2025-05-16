@@ -137,10 +137,83 @@ public function replenish()
     // Se carga la vista donde se mostrará el formulario para crear un producto
     require_once "views/productos/replenish.php";
 }
+
+
+
+// funcion para el inventariooooo ultima HU
+public function descargarinventario() {
+    $producto = new Producto();
+    $productos = $producto->listar();
+
+    $filename = "inventario_" . date('Ymd_His') . ".xls";
+
+    header("Content-Type: application/vnd.ms-excel; charset=UTF-8");
+    header("Content-Disposition: attachment; filename=$filename");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
+    echo "<html>";
+    echo "<head>";
+    echo "<meta charset='UTF-8'>";
+    echo "<style>
+        table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: center; }
+        th { background-color: #d0f0c0; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f7f7f7; }
+    </style>";
+    echo "</head>";
+    echo "<body>";
+    echo "<table>";
+    echo "<tr>
+            <th>ID Producto</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Fecha Caducidad</th>
+            <th>Perecedero</th>
+          </tr>";
+
+    foreach ($productos as $prod) {
+        $fecha = !empty($prod['fecha_caducidad']) 
+            ? date('d/m/Y', strtotime($prod['fecha_caducidad'])) 
+            : 'No expira';
+
+        $perecedero = ($prod['es_perecedero'] == 1) ? 'Sí' : 'No';
+
+        echo "<tr>";
+        echo "<td>{$prod['id_producto']}</td>";
+        echo "<td>" . htmlspecialchars($prod['nombre_producto']) . "</td>";
+        echo "<td>" . number_format($prod['precio_producto'], 2, ',', '.') . "</td>";
+        echo "<td>{$prod['cantidad_producto']}</td>";
+        echo "<td>$fecha</td>";
+        echo "<td>$perecedero</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+    echo "</body>";
+    echo "</html>";
+
+    exit();
+}
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     
 }
+
+
 
 
 
